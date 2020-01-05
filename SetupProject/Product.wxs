@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+
+
+
+  <!-- Define main product -->
+  <!-- Name="!(loc.ProductName_$(var.Platform))"-->
+  <Product Id="{EFD3BD93-EBE8-4A0C-A754-001BB5278442}"
+           Name="AutoPANEL"
+           Language="1033"
+           Version="1.01"
+           Manufacturer="Verdia"
+           UpgradeCode="{FF134957-8F1C-4BFA-A86F-DBE4D2F60532}">
+ 
+    <!--{37E77A87-7311-4CAD-9E58-9661FCF3E3A2}-->
+    <!-- Provide package details -->
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             Platform="x64"
+             Manufacturer="Verdia"
+             Description="Discription"
+             Keywords="Solar"
+             Comments="Comments"
+             Languages="1033"
+             />
+
+    <!-- Downgrade error message -->
+    <MajorUpgrade AllowSameVersionUpgrades="yes"  DowngradeErrorMessage="A newer version of Console App is already installed." />
+
+    <!-- Include .cab file into .msi file -->
+    <MediaTemplate
+      EmbedCab="yes"
+      />
+
+    <!-- Define main app icon -->
+    <Icon Id="icon.ico" SourceFile="$(var.AutoPANEL.ProjectDir)\Resources\icon.ico" />
+
+    <!-- Use the icon.ico icon for this installer (shows up in Add/Remove programs) -->
+    <Property Id="ARPPRODUCTICON">icon.ico</Property>
+    <!-- Help/Support website (shows in the Add/Remove programs) -->
+    <Property Id="ARPURLINFOABOUT">http://www.angelsix.com</Property>
+
+    <!-- Create a basic UI for the installer -->
+    <UIRef Id="WixUI_Minimal" />
+
+    <!-- Change the installer UI background images -->
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\Licence.rtf" />
+    <!--  <WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\Background.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\Banner.bmp" />-->
+
+    <!-- Define components, shortcuts, files etc... for installer -->
+    <Feature Id="ProductFeature" Title="AutoPANEL" Level="1">
+
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="PublishedComponents" />
+
+    </Feature>
+
+  </Product>
+
+</Wix>

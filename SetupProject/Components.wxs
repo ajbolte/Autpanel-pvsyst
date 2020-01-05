@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Fragment>
+
+    <!-- Product Components -->
+    <ComponentGroup Id="ProductComponents">
+
+      <!-- Shortcut -->
+      <ComponentRef Id="MainAppShortcut" />
+
+    </ComponentGroup>
+
+    <!-- Installed files -->
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\AutoPANEL\bin\Release\">
+
+      <!-- Shortcut to main application -->
+      <Component Id="MainAppShortcut" Guid="{4DD98C41-EC06-45E2-9012-6C0806C1F585}">
+
+        <Shortcut Id="MainAppShortcut"
+                  Name="!(loc.ProductName_$(var.Platform))"
+                  Target="[INSTALLFOLDER]AutoPANEL.exe"
+                 
+          Directory="ProgramMenuFolder"
+          WorkingDirectory="INSTALLFOLDER"
+          Icon="icon.ico"
+          />
+        <!-- Directory="InstallProgramMenuFolder"-->
+          <!-- Our unique key for this component/shortcut -->
+        <RegistryValue Id="RegShortcutKey" Root="HKCU" Key="SOFTWARE\$(loc.ProductNameFolder)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes" />
+
+        <!--Remove start menu items -->
+        <RemoveFolder Id="RemoveStartMenu" Directory="InstallProgramMenuFolder" On="uninstall" />
+
+      </Component>
+
+    </DirectoryRef>
+
+  </Fragment>
+
+
+</Wix>

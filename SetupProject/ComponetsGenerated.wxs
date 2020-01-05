@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="cmpF22D40156F8E16FBFA89C752FF9D0EF9" Guid="{E9A4E069-E948-478E-925C-5F5F6BDD2645}">
+        <File Id="fil2DACDED111D2125FD9BAF52808E5CEB0" KeyPath="yes" Source="..\AutoPANEL\bin\Release\AutoPANEL.exe" />
+      </Component>
+      <Component Id="cmp742C123932C1A216E185167E7780B396" Guid="{CDCC26D1-C5C2-4535-B281-3A515770D074}">
+        <File Id="filD4F5DAB6FC380871476D90A9B278B655" KeyPath="yes" Source="..\AutoPANEL\bin\Release\netdxf.dll" />
+      </Component>
+
+
+    </DirectoryRef>
+    <DirectoryRef Id="RESOURCEFOLDER">
+      <Component Id="cmpF22D40156F8E16FBFA89C752FF9D0EF8" Guid="{FBDC6815-6AC2-4F57-B237-4C221DCBCDF8}">
+        <File Id="fil2DACDED111D2125FD9BAF52808E5CEB8" KeyPath="no" Source="..\AutoPANEL\bin\Release\Resources\layout.dxf" />
+      </Component>
+
+
+
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="PublishedComponents">
+      <ComponentRef Id="cmpF22D40156F8E16FBFA89C752FF9D0EF9" />
+      <ComponentRef Id="cmp742C123932C1A216E185167E7780B396" />
+      <ComponentRef Id="cmpF22D40156F8E16FBFA89C752FF9D0EF8" />
+
+    </ComponentGroup>
+  </Fragment>
+</Wix>
