@@ -1,78 +1,37 @@
-﻿//using Aspose.ThreeD;
-//using Aspose.ThreeD.Utilities;
-using netDxf;
-using netDxf.Entities;
-using netDxf.Objects;
-using netDxf.Tables;
+﻿// Decompiled with JetBrains decompiler
+// Type: WpfApp1.Source.Routines
+// Assembly: AutoPANEL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: C212B403-A08A-4409-8AAB-FE76C4D4CFFE
+// Assembly location: C:\Release\Debug\Debug\AutoPANEL.exe
+
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
-using System.Net.Cache;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfApp1.Source;
-using Point = System.Windows.Point;
 
 namespace WpfApp1.Source
 {
-    class Routines
+  internal class Routines
+  {
+    public static double GetAngle(Point p1, Point p2)
     {
-        public static double GetAngle(Point p1, Point p2)
-        {
-            Double angle;
-            angle = (p2.Y - p1.Y) / (p2.X-p1.X);
-            angle = Math.Atan(angle);
-            if (p2.X < p1.X)
-            {
-                angle += Math.PI;
-            }
-            return angle;
-        }
-
-        public static int GetTime(DateTime date1)
-        {
-            try
-            {
-
-
-                var myHttpWebRequest = (HttpWebRequest) WebRequest.Create("http://www.microsoft.com");
-                var response = myHttpWebRequest.GetResponse();
-                string todaysDates = response.Headers["date"];
-
-                var date2 = DateTime.ParseExact(todaysDates,
-                    "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-                    CultureInfo.InvariantCulture.DateTimeFormat,
-                    DateTimeStyles.AssumeUniversal);
-                
-                int daysDiff = ((TimeSpan) (date1 - date2)).Days;
-                return daysDiff;
-            }
-
-            catch
-            {
-                MessageBox.Show(
-                    "Could not validate licence, please ensure you are connected to the internet and reopen program");
-                Environment.Exit(0);
-                return -99;
-            }
-
-
-        }
-
-
+      double num = Math.Atan((p2.Y - p1.Y) / (p2.X - p1.X));
+      if (p2.X < p1.X)
+        num += Math.PI;
+      return num;
     }
+
+    public static int GetTime(DateTime date1)
+    {
+      try
+      {
+        DateTime exact = DateTime.ParseExact(WebRequest.Create("http://www.microsoft.com").GetResponse().Headers["date"], "ddd, dd MMM yyyy HH:mm:ss 'GMT'", (IFormatProvider) CultureInfo.InvariantCulture.DateTimeFormat, DateTimeStyles.AssumeUniversal);
+        return (date1 - exact).Days;
+      }
+      catch
+      {
+        return -99;
+      }
+    }
+  }
 }

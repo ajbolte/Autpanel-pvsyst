@@ -1,136 +1,96 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AutoPANEL.Source.Latitude
+// Assembly: AutoPANEL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: C212B403-A08A-4409-8AAB-FE76C4D4CFFE
+// Assembly location: C:\Release\Debug\Debug\AutoPANEL.exe
+
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace AutoPANEL.Source
 {
-    class Latitude
+  internal class Latitude
+  {
+    private static double a = 6378137.0;
+    private static double f = 0.00335281066433155;
+    private static double drad = Math.PI / 180.0;
+    private static double k0 = 0.9996;
+    private static double b = Latitude.a * (1.0 - Latitude.f);
+    private static double e = Math.Sqrt(1.0 - Latitude.b / Latitude.a * (Latitude.b / Latitude.a));
+    private static double e0 = Latitude.e / Math.Sqrt(1.0 - Latitude.e * Latitude.e);
+    private static double esq = 1.0 - Latitude.b / Latitude.a * (Latitude.b / Latitude.a);
+    private static double e0sq = Latitude.e * Latitude.e / (1.0 - Latitude.e * Latitude.e);
+
+    public static double utmToLatLon(double x, double y, double utmz, bool north)
     {
-        static double a = 6378137;
-        static double f = 1/298.2572236;
-        static double drad = Math.PI / 180;
-        static double k0   = 0.9996;                      // scale on central meridian
-        static double b    = a * (1 - f);                   // polar axis
-        static double e    = Math.Sqrt(1 - (b / a) * (b / a));  // eccentricity
-        static double e0   = e / Math.Sqrt(1 - e * e);      // called e' in reference
-        static double esq  = (1 - (b / a) * (b / a));         // e² for use in expansions
-        static double e0sq = e * e / (1 - e * e);             // e0² — always even powers
-
-
-
-         public static double utmToLatLon(double x,double y,double utmz,bool north)
-        {
-
-            // First some validation:
-            if (x < 160000 || x > 840000)
-            {
-              //  alert("Outside permissible range of easting values.");
-              //  return;
-            }
-            if (y < 0)
-            {
-                //alert("Negative values are not allowed for northing.");
-               // return;
-            }
-            if (y > 10000000)
-            {
-              ////  alert("Northing may not exceed 10,000,000.");
-             //   return;
-            }
-
-            // Now the actual calculation:
-             double zcm = 3 + 6 * (utmz - 1) - 180;  // central meridian of zone
-            double e1  = (1 - Math.Sqrt(1 - e * e)) / (1 + Math.Sqrt(1 - e * e));  // called e₁ in USGS PP 1395
-            double M0  = 0;  // in case origin other than zero lat - not needed for standard UTM
-
-            double M = 0;  // arc length along standard meridian
-            if (north)
-            {
-                M = M0 + y / k0;
-            }
-            else
-            {  // southern hemisphere
-                M = M0 + (y - 10000000) / k0;
-            }
-            double mu = M / (a * (1 - esq * (1 / 4 + esq * (3 / 64 + 5 * esq / 256))));
-            double phi1 = mu + e1 * (3 / 2 - 27 * e1 * e1 / 32) * Math.Sin(2 * mu) + e1 * e1 * (21 / 16 - 55 * e1 * e1 / 32) * Math.Sin(4 * mu);  // footprint Latitude
-            phi1 = phi1 + e1 * e1 * e1 * (Math.Sin(6 * mu) * 151 / 96 + e1 * Math.Sin(8 * mu) * 1097 / 512);
-            double C1 = e0sq * Math.Pow(Math.Cos(phi1), 2);
-            double T1 = Math.Pow(Math.Tan(phi1), 2);
-            double N1 = a / Math.Sqrt(1 - Math.Pow(e * Math.Sin(phi1), 2));
-            double R1 = N1 * (1 - e * e) / (1 - Math.Pow(e * Math.Sin(phi1), 2));
-            double D  = (x - 500000) / (N1 * k0);
-            double phi = (D * D) * (1 / 2 - D * D * (5 + 3 * T1 + 10 * C1 - 4 * C1 * C1 - 9 * e0sq) / 24);
-            phi = phi + Math.Pow(D, 6) * (61 + 90 * T1 + 298 * C1 + 45 * T1 * T1 - 252 * e0sq - 3 * C1 * C1) / 720;
-            phi = phi1 - (N1 * Math.Tan(phi1) / R1) * phi;
-
-            // Output Latitude:
-            double outLat = Math.Floor(1000000 * phi / drad) / 1000000;
-
-            double lng = D * (1 + D * D * ((-1 - 2 * T1 - C1) / 6 + D * D * (5 - 2 * C1 + 28 * T1 - 3 * C1 * C1 + 8 * e0sq + 24 * T1 * T1) / 120)) / Math.Cos(phi1);
-            double lngd = zcm + lng / drad;
-
-            // Output Longitude:
-            double outLon = Math.Floor(1000000 * lngd) / 1000000;
-
-            return outLat;
-        }
-
-        public static double Spacing(double PanelLength,double RoofPitch, double ArrayTilt, double Angle, double latitude)
-        {
-            double[] hour = new double[] { -0.785398163, -0.523598776, -0.261799388,0, 0.261799388, 0.523598776, 0.785398163 };
-
-            double[] q = new double[] { 0.7071, 0.866, 0.9659, 1, 0.9659,0.866 , 0.7071 };
-
-            double PanelTilt = ArrayTilt - RoofPitch;
-            double vertical = Math.Sin(PanelTilt / 180 * Math.PI) * PanelLength;
-          //  Debug.WriteLine("vertical: " + vertical.ToString());
-            double p18 = Math.Sin(Math.Abs(latitude) / 180 * Math.PI);
-         //   Debug.WriteLine("p18: " + p18.ToString());
-            double q18 = Math.Cos(Math.Abs(latitude) / 180 * Math.PI);
-         //   Debug.WriteLine("q18: " + q18.ToString());
-            double p19 = Math.Sin(-23.45 / 180 * Math.PI);
-         //   Debug.WriteLine("p19: " + p19.ToString());
-            double q19 = Math.Cos(-23.45 / 180 * Math.PI);
-         //   Debug.WriteLine("q19: " + q19.ToString());
-            double t = p18 * p19 + q18 * q19;
- 
-            double v = Math.Asin(t);
-
-            double y = vertical / Math.Tan(v);
-
-            double[] z = new double[7];
-            for(int i = 0; i < 7; i++)
-            {
-                t = p18 * p19 + q18 * q19 * q[i];
-             //   Debug.WriteLine("t: " + t.ToString());
-                v = Math.Asin(t);
-              //  Debug.WriteLine("v: " + v.ToString());
-                y = vertical / Math.Tan(v);
-              //  Debug.WriteLine("y: " + y.ToString());
-              //  Debug.WriteLine("hout[i]: " + hour[i].ToString());
-               // Debug.WriteLine("Angle: " + Angle.ToString());
-                z[i] =  Math.Cos((hour[i] - Angle) );
-              //  Debug.WriteLine("z: " + z[i].ToString());
-                z[i] = y * Math.Cos((hour[i] - Angle) );
-              //  Debug.WriteLine("hour: " +( 9+i*1).ToString() + " Space: " + z[i].ToString() );
-            }
-            double returnVal = Math.Round(z.Max());
-            if (returnVal < 26)
-            {
-                returnVal = 26;
-            }
-            else
-            {
-                returnVal = returnVal / 50;
-                returnVal = Math.Ceiling(returnVal);
-                returnVal = returnVal * 50;
-            }
-            return returnVal;
-        }
+      if (x >= 160000.0 && x <= 840000.0)
+        ;
+      if (y >= 0.0)
+        ;
+      if (y <= 10000000.0)
+        ;
+      double num1 = 3.0 + 6.0 * (utmz - 1.0) - 180.0;
+      double num2 = (1.0 - Math.Sqrt(1.0 - Latitude.e * Latitude.e)) / (1.0 + Math.Sqrt(1.0 - Latitude.e * Latitude.e));
+      double num3 = 0.0;
+      double num4 = (!north ? num3 + (y - 10000000.0) / Latitude.k0 : num3 + y / Latitude.k0) / (Latitude.a * (1.0 - Latitude.esq * (0.0 + Latitude.esq * (0.0 + 5.0 * Latitude.esq / 256.0))));
+      double num5 = num4 + num2 * (1.0 - 27.0 * num2 * num2 / 32.0) * Math.Sin(2.0 * num4) + num2 * num2 * (1.0 - 55.0 * num2 * num2 / 32.0) * Math.Sin(4.0 * num4) + num2 * num2 * num2 * (Math.Sin(6.0 * num4) * 151.0 / 96.0 + num2 * Math.Sin(8.0 * num4) * 1097.0 / 512.0);
+      double num6 = Latitude.e0sq * Math.Pow(Math.Cos(num5), 2.0);
+      double num7 = Math.Pow(Math.Tan(num5), 2.0);
+      double num8 = Latitude.a / Math.Sqrt(1.0 - Math.Pow(Latitude.e * Math.Sin(num5), 2.0));
+      double num9 = num8 * (1.0 - Latitude.e * Latitude.e) / (1.0 - Math.Pow(Latitude.e * Math.Sin(num5), 2.0));
+      double x1 = (x - 500000.0) / (num8 * Latitude.k0);
+      double num10 = x1 * x1 * (0.0 - x1 * x1 * (5.0 + 3.0 * num7 + 10.0 * num6 - 4.0 * num6 * num6 - 9.0 * Latitude.e0sq) / 24.0) + Math.Pow(x1, 6.0) * (61.0 + 90.0 * num7 + 298.0 * num6 + 45.0 * num7 * num7 - 252.0 * Latitude.e0sq - 3.0 * num6 * num6) / 720.0;
+      double num11 = Math.Floor(1000000.0 * (num5 - num8 * Math.Tan(num5) / num9 * num10) / Latitude.drad) / 1000000.0;
+      double num12 = x1 * (1.0 + x1 * x1 * ((-1.0 - 2.0 * num7 - num6) / 6.0 + x1 * x1 * (5.0 - 2.0 * num6 + 28.0 * num7 - 3.0 * num6 * num6 + 8.0 * Latitude.e0sq + 24.0 * num7 * num7) / 120.0)) / Math.Cos(num5);
+      double num13 = Math.Floor(1000000.0 * (num1 + num12 / Latitude.drad)) / 1000000.0;
+      return num11;
     }
+
+    public static double Spacing(
+      double PanelLength,
+      double RoofPitch,
+      double ArrayTilt,
+      double Angle,
+      double latitude)
+    {
+      double[] numArray1 = new double[7]
+      {
+        -0.785398163,
+        -0.523598776,
+        -1.0 * Math.PI / 12.0,
+        0.0,
+        Math.PI / 12.0,
+        0.523598776,
+        0.785398163
+      };
+      double[] numArray2 = new double[7]
+      {
+        0.7071,
+        0.866,
+        0.9659,
+        1.0,
+        0.9659,
+        0.866,
+        0.7071
+      };
+      double num1 = Math.Sin((ArrayTilt - RoofPitch) / 180.0 * Math.PI) * PanelLength;
+      double num2 = Math.Sin(Math.Abs(latitude) / 180.0 * Math.PI);
+      double num3 = Math.Cos(Math.Abs(latitude) / 180.0 * Math.PI);
+      double num4 = Math.Sin(-0.40927970959267);
+      double num5 = Math.Cos(-0.40927970959267);
+      double a1 = Math.Asin(num2 * num4 + num3 * num5);
+      double num6 = num1 / Math.Tan(a1);
+      double[] numArray3 = new double[7];
+      for (int index = 0; index < 7; ++index)
+      {
+        double a2 = Math.Asin(num2 * num4 + num3 * num5 * numArray2[index]);
+        double num7 = num1 / Math.Tan(a2);
+        numArray3[index] = Math.Cos(numArray1[index] - Angle);
+        numArray3[index] = num7 * Math.Cos(numArray1[index] - Angle);
+      }
+      double num8 = Math.Round(((IEnumerable<double>) numArray3).Max());
+      return num8 >= 26.0 ? Math.Ceiling(num8 / 50.0) * 50.0 : 26.0;
+    }
+  }
 }

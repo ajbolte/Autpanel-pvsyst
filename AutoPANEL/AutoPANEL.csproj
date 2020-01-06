@@ -72,16 +72,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Angels.cs" />
     <Compile Include="Source\Angles.cs" />
+    <Compile Include="Source\ArraySettings.cs" />
+    <Compile Include="Source\DXF.cs" />
     <Compile Include="Source\Latitude.cs" />
     <Compile Include="Source\MasterSettings.cs" />
-    <Compile Include="Source\DXF.cs" />
     <Compile Include="Source\MinMax.cs" />
+    <Compile Include="Source\Orientation.cs" />
+    <Compile Include="Source\PanelPoint.cs" />
+    <Compile Include="Source\PanelPointSet.cs" />
     <Compile Include="Source\PanelTest.cs" />
+    <Compile Include="Source\PanelTestMethods.cs" />
+    <Compile Include="Source\PVmodule.cs" />
     <Compile Include="Source\Routines.cs" />
     <Compile Include="Source\SaveFile.cs" />
     <Compile Include="Source\saveFiles.cs" />
     <Compile Include="Source\ShapeMods.cs" />
+    <Compile Include="Source\TestMethods.cs" />
+    <Compile Include="Source\TestPoints.cs" />
     <Page Include="Layout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

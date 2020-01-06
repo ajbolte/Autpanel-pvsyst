@@ -48,7 +48,7 @@ namespace AutoPANEL
         IList<System.Windows.Shapes.Polyline> shadeCollection = new List<Polyline>();
         List<List<Point3d>> roofSections = new List<List<Point3d>>();
         IList<Polyline> outlineCollection = new List<Polyline>();
-        ObservableCollection<PanelList> SelectedPanelList = new ObservableCollection<PanelList>();
+        ObservableCollection<PanelPointSet> SelectedPanelList = new ObservableCollection<PanelPointSet>();
         ObservableCollection<SolidColorBrush> Color = new ObservableCollection<SolidColorBrush>();
         ObservableCollection<string> ColorName = new ObservableCollection<string>();
         PointCollection polygonPoints = new PointCollection();
@@ -283,55 +283,7 @@ namespace AutoPANEL
         }
         private void LoadProject()
         {
-            System.Xml.Serialization.XmlSerializer reader =
-            new System.Xml.Serialization.XmlSerializer(typeof(SaveFile));
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            string filename1 = "";
-            // Set filter for file extension and default file extension 
-            dlg.DefaultExt = "*.apf";
-            dlg.Filter = "AutoPanel Files (*.apf)|*.apf";
-            // Display OpenFileDialog by calling ShowDialog method 
-            bool? result = dlg.ShowDialog();
-            // Get the selected file name and display in a TextBox 
-            if (result == true)
-            {
-                // Open document 
-                filename1 = dlg.FileName;
-                StreamReader file = new StreamReader(filename1);
-                saveFile = (SaveFile)reader.Deserialize(file);
-                ShapeMods.RemovePlines(TheCanvas);
-                ms = saveFile.masterSettings;
-                ms.image = System.IO.Path.GetDirectoryName(filename1) + "\\" + ms.title + ms.imageEx;
-                lineThickness.Text = ms.drawingThickness.ToString();
-                UpdateLineThickness();
-                lp.Clear();
-                TitleName.Text = ms.title;
-                latitudeBox.Text = ms.latitude.ToString();
-                foreach (PanelTest pt in saveFile.PanelTests)
-                {
-                    outLineAdd(pt);
-                    ShadingAddAll(pt);
-                    lp.Add(pt);
-                    removeZeroPoints(pt.panelList[pt.SelectedIndex].points);
-                }
-                ShapeMods.RemoveAllPgons(TheCanvas);
-                foreach (PanelTest pt in saveFile.PanelTests)
-                {
-                    foreach (Point p in pt.panelList[pt.SelectedIndex].points)
-                    {
-                        ShapeMods.InsertPanel(p, pt.testSettings.panelCorners, Color[pt.PanelColor], ms.lineScale, TheCanvas, pt.num.ToString(), ms.scaleMM, pt.pVmodule, pt.arraySettings.Azumuth, panelImageSelection);
-                    }
-                }
-                if (lp.Count > 0)
-                {
-                    arrayList.SelectedIndex = 0;
-                    panelList.SelectedIndex = lp[0].SelectedIndex;
-                }
 
-                SetupImage(ms.image);
-                file.Close();
-            }
-            else { }
         }
         public void SetupImage(string file)
         {
@@ -424,41 +376,30 @@ namespace AutoPANEL
 
 
         }
-        void SetupPanelTestDefault(PanelTest pt)
+
+        public ArraySettings ReadGlobalSettings()
+        {
+            ArraySettings aset = new ArraySettings();
+            aset.name = arrayNameGlobal.Text;
+            aset.RoofPitch = Convert.ToDouble(RoofPitchGlobal.Text);
+            aset.ArrayPitch = Convert.ToDouble(ArrayPitchGlobal.Text);
+            aset.ConsecutivePanelsAcross = Convert.ToInt32(PanelsAcrossGlobal.Text);
+            aset.ConsecutivePanelsDown = Convert.ToInt32(PanelsDownGlobal.Text);
+            aset.GapBetweenPanelsAcross = Convert.ToDouble(GapAcrossGlobal.Text);
+            aset.GapBetweenPanelsDown = Convert.ToDouble(GapDownGlobal.Text);
+            aset.WalkwayWidthAcross = Convert.ToDouble(WalkwaySizeAcrossGlobal.Text);
+            aset.WalkwayWidthDown = Convert.ToDouble(WalkwaySizeDownGlobal.Text);
+            aset.useSpacing = (bool)SpacingCheck.IsChecked;
+
+
+            return aset;
+
+        }
+
+        private void WriteArraySettings(ArraySettings aset)
         {
 
-            bool orientation = false;
-            PVmodule pv = PanelTypesGlobal.SelectedItem as PVmodule;
-            pt.arraySettings.name = arrayNameGlobal.Text;
-            pt.arraySettings.RoofPitch = Convert.ToDouble(RoofPitchGlobal.Text);
-            pt.arraySettings.ArrayPitch = Convert.ToDouble(ArrayPitchGlobal.Text);
-            pt.arraySettings.ConsecutivePanelsAcross = Convert.ToInt32(PanelsAcrossGlobal.Text);
-            pt.arraySettings.ConsecutivePanelsDown = Convert.ToInt32(PanelsDownGlobal.Text);
-            pt.arraySettings.GapBetweenPanelsAcross = Convert.ToDouble(GapAcrossGlobal.Text);
-            pt.arraySettings.GapBetweenPanelsDown = Convert.ToDouble(GapDownGlobal.Text);
-            pt.arraySettings.WalkwayWidthAcross = Convert.ToDouble(WalkwaySizeAcrossGlobal.Text);
-            pt.arraySettings.WalkwayWidthDown = Convert.ToDouble(WalkwaySizeDownGlobal.Text);
-            pt.pVmodule.PanelIndex = PanelTypesGlobal.SelectedIndex;
-            pt.pVmodule.OrientationIndex = OrientationBoxGlobal.SelectedIndex;
-            pt.pVmodule.Name = pv.Name;
-            pt.pVmodule.PanelLong = pv.PanelLong;
-            pt.pVmodule.PanelWide = pv.PanelWide;
-            pt.pVmodule.PanelWatts = pv.PanelWatts;
-            pt.SpacingCheck = SpacingCheck.IsChecked;
-            pt.PanelColor = panelColorList1Glob.SelectedIndex;
-            pt.OutlineColor = outlineColorList1Glob.SelectedIndex;
-            pt.ExclusionColor = shadingColorList1Glob.SelectedIndex;
-            if (OrientationBoxGlobal.SelectedIndex == 1)
-            {
-                orientation = true;
-            }
-            pt.pVmodule.PanelOrientation = orientation;
-            pt.SpacingCheck = SpacingCheckGlobal.IsChecked;
-            pt.ExtraPanels = Convert.ToInt32(extraPanels.Text);
-        }
-        private void ArraySettingsWrite(PanelTest pt)
-        {
-            if (pt.SpacingCheck == true)
+            if (aset.useSpacing == true)
             {
                 SpacingCheck.IsChecked = true;
             }
@@ -466,31 +407,30 @@ namespace AutoPANEL
             {
                 SpacingCheck.IsChecked = false;
             }
-            azimuth.Text = (Math.Round(pt.arraySettings.Azumuth / Math.PI * 180, 2)).ToString();
-            arrayName.Text = pt.ToString();
-            PanelsAcross.Text = pt.arraySettings.ConsecutivePanelsAcross.ToString();
-            PanelsDown.Text = pt.arraySettings.ConsecutivePanelsDown.ToString();
+            azimuth.Text = (Math.Round(aset.Azumuth / Math.PI * 180, 2)).ToString();
+            arrayName.Text = aset.ToString();
+            PanelsAcross.Text = aset.ConsecutivePanelsAcross.ToString();
+            PanelsDown.Text = aset.ConsecutivePanelsDown.ToString();
 
 
 
-            GapAcross.Text = pt.arraySettings.GapBetweenPanelsAcross.ToString();
-            GapDown.Text = pt.arraySettings.GapBetweenPanelsDown.ToString();
-            WalkwaySizeAcross.Text = pt.arraySettings.WalkwayWidthAcross.ToString();
-            WalkwaySizeDown.Text = pt.arraySettings.WalkwayWidthDown.ToString();
-            PanelTypes.SelectedIndex = pt.pVmodule.PanelIndex;
+            GapAcross.Text = aset.GapBetweenPanelsAcross.ToString();
+            GapDown.Text = aset.GapBetweenPanelsDown.ToString();
+            WalkwaySizeAcross.Text = aset.WalkwayWidthAcross.ToString();
+            WalkwaySizeDown.Text = aset.WalkwayWidthDown.ToString();
+            PanelTypes.SelectedIndex = aset.pv.PanelIndex;
 
-            OrientationBox.SelectedIndex = pt.pVmodule.OrientationIndex;
-            double d = Latitude.Spacing(pt.pVmodule.PanelWidthReal, pt.arraySettings.RoofPitch, pt.arraySettings.ArrayPitch, pt.arraySettings.Azumuth, ms.latitude);
-            panelColorList1.SelectedIndex = pt.PanelColor;
-            outlineColorList1.SelectedIndex = pt.OutlineColor;
-            shadingColorList1.SelectedIndex = pt.ExclusionColor;
+            OrientationBox.SelectedIndex = aset.pv.OrientationIndex;
+            double d = Latitude.Spacing(aset.pv.PanelWidthReal, aset.RoofPitch, aset.ArrayPitch, aset.Azumuth, ms.latitude);
+            panelColorList1.SelectedIndex = aset.panelColor;
+            outlineColorList1.SelectedIndex = aset.outlineColor;
+            shadingColorList1.SelectedIndex = aset.exclusionColor;
             rowSpacing.Text = d.ToString();
-            RoofPitch.Text = pt.arraySettings.RoofPitch.ToString();
-            ArrayPitch.Text = pt.arraySettings.ArrayPitch.ToString();
+            RoofPitch.Text = aset.RoofPitch.ToString();
+            ArrayPitch.Text = aset.ArrayPitch.ToString();
 
             if (SpacingCheck.IsChecked == true)
             {
-                //  pt.arraySettings.GapBetweenPanelsDown = d;
                 GapDown.Text = rowSpacing.Text;
             }
         }
@@ -1066,16 +1006,15 @@ namespace AutoPANEL
             }
             else
             {
-                PanelTest pt = new PanelTest(ms);
-                pt.PanelColor = panelColorList1.SelectedIndex;
-                pt.OutlineColor = outlineColorList1.SelectedIndex;
-                pt.ExclusionColor = shadingColorList1.SelectedIndex;
-                pt.stepAcross = Convert.ToInt32(xSect.Text);
-                pt.stepDown = Convert.ToInt32(ySect.Text);
+                PVmodule pv = (PVmodule)PanelTypesGlobal.SelectedItem;
+                PanelTest pt = new PanelTest(ms, pv);
+
+
 
                 pt.num = lp.Count();
-                SetupPanelTestDefault(pt);
-                pt.boundary = polygonPoints;
+                pt.SetBoundary(polygonPoints);
+                pt.SetupTest();
+
                 ShapeMods.RemoveLines(TheCanvas);
 
                 outLineAdd(pt);
@@ -1086,11 +1025,6 @@ namespace AutoPANEL
                 foreach (PanelTest pt1 in arrayList.SelectedItems)
                 {
 
-                    //  if (pt1.panelList == null)
-                    // {
-                    pt1.PanelTestSetup();
-                    //}
-                    ArraySettingsWrite(pt1);
                     DoTest(pt1);
                 }
             }
@@ -1284,17 +1218,18 @@ namespace AutoPANEL
                         outLineAdd(pt);
                         ShadingAddAll(pt);
                         int i = 0;
-                        foreach (Point p in pt.panelList[pt.SelectedIndex].points)
-                        {
-                            i++;
-                            ShapeMods.InsertPanel(p, pt.testSettings.panelCorners, Color[pt.PanelColor], ms.lineScale, TheCanvas, pt.num.ToString(), ms.scaleMM, pt.pVmodule, pt.arraySettings.Azumuth, panelImageSelection);
-                            if (i > 100)
-                            {
+                        /*   foreach (Point p in pt.panelList[pt.SelectedIndex].points)
+                           {
+                               i++;
+                               ShapeMods.InsertPanel(p, pt.testSettings.panelCorners, Color[pt.PanelColor], ms.lineScale, TheCanvas, pt.num.ToString(), ms.scaleMM, pt.pVmodule, pt.arraySettings.Azumuth, panelImageSelection);
+                               if (i > 100)
+                               {
 
-                                DoEvents();
-                                i = 0;
-                            }
-                        }
+                                   DoEvents();
+                                   i = 0;
+                               }
+                           }
+                           */
                     }
                     // outLineAdd(pt);
                     //ShadingAdd
@@ -1333,7 +1268,7 @@ namespace AutoPANEL
                 {
                     foreach (PanelTest pt in arrayList.SelectedItems)
                     {
-                        pt.AzimuthChanged(Convert.ToDouble(azimuth.Text) / 180 * Math.PI);
+
                     }
                 }
             }
@@ -1374,7 +1309,7 @@ namespace AutoPANEL
                     {
                         pt.arraySettings.GapBetweenPanelsAcross = Convert.ToDouble(GapAcross.Text);
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1394,7 +1329,7 @@ namespace AutoPANEL
                     {
                         pt.arraySettings.GapBetweenPanelsDown = Convert.ToDouble(GapDown.Text);
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1414,7 +1349,7 @@ namespace AutoPANEL
                     {
                         pt.arraySettings.ConsecutivePanelsAcross = Convert.ToInt32(PanelsAcross.Text);
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1434,7 +1369,7 @@ namespace AutoPANEL
                     {
                         pt.arraySettings.ConsecutivePanelsDown = Convert.ToInt32(PanelsDown.Text);
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1452,14 +1387,14 @@ namespace AutoPANEL
                 SelectedPanelList.Clear();
                 CalcPower();
                 PanelTest pt = arrayList.SelectedItem as PanelTest;
-                foreach (PanelList pl in pt.panelList)
+                foreach (PanelPointSet pps in pt.PanelLayoutPoints)
                 {
-                    SelectedPanelList.Add(pl);
+                    SelectedPanelList.Add(pps);
                 }
                 panelList.Items.Refresh();
                 panelList.SelectedIndex = pt.SelectedIndex;
 
-                ArraySettingsWrite(pt);
+
                 UpdateLineThickness();
                 ShapeMods.changePlineThickessByID(ms.lineScale * 3, TheCanvas, pt.num.ToString());
 
@@ -1477,18 +1412,8 @@ namespace AutoPANEL
                 //   Debug.WriteLine("Panel test number: " + pt.num.ToString());
                 //   Debug.WriteLine("Panel List Index: " + panelList.SelectedIndex.ToString());
                 ShapeMods.RemovePgons(TheCanvas, pt.num.ToString());
-                int i = 0;
-                foreach (Point p in SelectedPanelList[panelList.SelectedIndex].points)
-                {
-                    i++;
-                    ShapeMods.InsertPanel(p, pt.testSettings.panelCorners, Color[pt.PanelColor], ms.lineScale, TheCanvas, pt.num.ToString(), ms.scaleMM, pt.pVmodule, pt.arraySettings.Azumuth, panelImageSelection);
-                    if (i > 100)
-                    {
 
-                        DoEvents();
-                        i = 0;
-                    }
-                }
+                InsertPanelA(pt, TheCanvas);
                 pt.SelectedIndex = panelList.SelectedIndex;
                 CalcPower();
                 //   Debug.WriteLine("Panel List Change Sucseessful");
@@ -1570,7 +1495,7 @@ namespace AutoPANEL
                     {
                         pt.arraySettings.WalkwayWidthAcross = Convert.ToDouble(WalkwaySizeAcross.Text);
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1592,7 +1517,7 @@ namespace AutoPANEL
                         pt.arraySettings.WalkwayWidthDown = Convert.ToDouble(WalkwaySizeDown.Text);
 
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1622,7 +1547,7 @@ namespace AutoPANEL
                             GapDown.Text = rowSpacing.Text;
                         }
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
 
 
                         if (SpacingCheck.IsChecked == true)
@@ -1650,7 +1575,7 @@ namespace AutoPANEL
                         pt.arraySettings.ArrayPitch = Convert.ToDouble(ArrayPitch.Text);
                         pt.pVmodule.ModuleOrientation(pt.pVmodule.PanelOrientation, pt.arraySettings.ArrayPitch);
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
 
                         double d = Latitude.Spacing(pt.pVmodule.PanelWidthReal, pt.arraySettings.RoofPitch, pt.arraySettings.ArrayPitch, pt.arraySettings.Azumuth, ms.latitude);
 
@@ -1776,41 +1701,11 @@ namespace AutoPANEL
         }
         private void ExtraPanels_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                if ((arrayList.SelectedItems.Count > 0) && boolo == false)
-                {
-                    foreach (PanelTest pt in arrayList.SelectedItems)
-                    {
-                        int xtraPanels = Convert.ToInt32(extraPanels.Text);
 
-                        pt.UpdateTest(xtraPanels);
-                    }
-                }
-            }
-            catch
-            {
-                //   MessageBox.Show("Changing array settings failed");
-            }
         }
         private void XSect_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                if ((arrayList.SelectedItems.Count > 0) && boolo == false)
-                {
-                    foreach (PanelTest pt in arrayList.SelectedItems)
-                    {
-                        pt.stepAcross = Convert.ToInt32(xSect.Text);
 
-                        pt.UpdateTest();
-                    }
-                }
-            }
-            catch
-            {
-                //   MessageBox.Show("Changing array settings failed");
-            }
         }
 
         private void XTest_TextChanged(object sender, TextChangedEventArgs e)
@@ -1820,22 +1715,7 @@ namespace AutoPANEL
 
         private void YSect_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                if ((arrayList.SelectedItems.Count > 0) && boolo == false)
-                {
-                    foreach (PanelTest pt in arrayList.SelectedItems)
-                    {
-                        pt.stepDown = Convert.ToInt32(ySect.Text);
 
-                        pt.UpdateTest();
-                    }
-                }
-            }
-            catch
-            {
-                //   MessageBox.Show("Changing array settings failed");
-            }
         }
 
         private void TitleName_TextChanged(object sender, TextChangedEventArgs e)
@@ -1865,7 +1745,7 @@ namespace AutoPANEL
                             GapDown.Text = rowSpacing.Text;
                         }
                         arrayList.Items.Refresh();
-                        pt.UpdateTest();
+
                     }
                 }
             }
@@ -1892,9 +1772,7 @@ namespace AutoPANEL
                     foreach (PanelTest pt in arrayList.Items)
                     {
 
-                        pt.masterSettings.dxfScale = ms.dxfScale;
-                        pt.masterSettings.scale = ms.scale;
-                        pt.masterSettings.scaleMM = ms.scaleMM;
+
                     }
                 }
             }
@@ -2122,65 +2000,7 @@ namespace AutoPANEL
             go.Visibility = Visibility.Hidden;
             arrayList.Visibility = Visibility.Hidden;
             deleteArray_Copy.Visibility = Visibility.Hidden;
-            int max = 0;
-            int count = 0;
-            int sectsBefore = Convert.ToInt32(sectionsBefore.Text);
-            try
-            {
-                panelList.SelectedIndex = -1;
-                Debug.WriteLine("Test begun");
-                PanelList moduleList = new PanelList();
-                SelectedPanelList.Clear();
-                pt.panelList.Clear();
-                var watch = new System.Diagnostics.Stopwatch();
-                watch.Start();
-                Double percent = 0;
-                Double percentCount = 0;
-                int XTest = Convert.ToInt32(xTest.Text);
-                int YTest = Convert.ToInt32(yTest.Text);
-                percentBox.Visibility = Visibility.Visible;
-                percentBox.Text = "0%";
-                for (int i = 0; i < YTest; i++)
-                {
-                    for (int j = 0; j < XTest; j++)
-                    {
 
-                        PointCollection panels = new PointCollection();
-
-                        moduleList = new PanelList();
-                        panels = pt.GoTest(sectsBefore + j, sectsBefore + i);
-                        moduleList.points = panels;
-                        pt.panelList.Add(moduleList);
-                        SelectedPanelList.Add(moduleList);
-
-                        percentCount++;
-                        percent = percentCount / (XTest * YTest) * 100;
-                        percent = Math.Round(percent, 0);
-                        percentBox.Text = percent.ToString() + "%";
-
-                        DoEvents();
-
-
-                    }
-                }
-                shadingTick.IsChecked = false;
-                Debug.WriteLine("Test Completed");
-                Debug.WriteLine("sets: " + SelectedPanelList.Count.ToString());
-                percentBox.Visibility = Visibility.Hidden;
-                watch.Stop();
-                MessageBox.Show(watch.ElapsedMilliseconds.ToString());
-                foreach (PanelList pl in pt.panelList)
-                {
-                    if (pl.points.Count() > max)
-                    {
-                        max = pl.points.Count();
-                        pt.SelectedIndex = count;
-                    }
-                    count++;
-                }
-                panelList.SelectedIndex = pt.SelectedIndex;
-            }
-            catch { }
 
             arrayList.Visibility = Visibility.Visible;
             go.Visibility = Visibility.Visible;
@@ -2709,8 +2529,9 @@ namespace AutoPANEL
                 {
                     foreach (PanelTest pt in arrayList.SelectedItems)
                     {
-                        count += pt.panelList[pt.SelectedIndex].points.Count();
-                        power += pt.panelList[pt.SelectedIndex].points.Count() * pt.pVmodule.PanelWatts / 1000;
+                        count += pt.PanelLayoutPoints.Count();
+
+                        power += pt.PanelLayoutPoints.Count() * pt.pVmodule.PanelWatts / 1000;
                     }
                 }
                 if (power < 1000)
@@ -2741,7 +2562,7 @@ namespace AutoPANEL
                 foreach (PanelTest pt in arrayList.Items)
                 {
 
-                    power += pt.panelList[pt.SelectedIndex].points.Count() * pt.pVmodule.PanelWatts / 1000;
+                    power += pt.PanelLayoutPoints.Count() * pt.pVmodule.PanelWatts / 1000;
                 }
 
 
@@ -2766,7 +2587,7 @@ namespace AutoPANEL
 
                 foreach (PanelTest pt in arrayList.Items)
                 {
-                    count += pt.panelList[pt.SelectedIndex].points.Count();
+                    count += pt.PanelLayoutPoints.Count();
 
                 }
 
@@ -2904,7 +2725,7 @@ namespace AutoPANEL
                     }
 
                     //  pt.arraySettings.GapBetweenPanelsDown = Convert.ToDouble(GapDown.Text);
-                    pt.UpdateTest();
+
                 }
                 foreach (PanelTest pt in arrayList.SelectedItems)
                 {
@@ -2974,13 +2795,6 @@ namespace AutoPANEL
             foreach (PanelTest pt in lp)
             {
 
-                foreach (Point p in pt.panelList[pt.SelectedIndex].points)
-                {
-
-
-                    // pt.panelList[pt.SelectedIndex].points.Remove(p);
-                    ShapeMods.InsertPanel(p, pt.testSettings.panelCorners, Color[pt.PanelColor], ms.lineScale, TheCanvas, pt.num.ToString(), ms.scaleMM, pt.pVmodule, pt.arraySettings.Azumuth, panelImageSelection);
-                }
 
 
             }
@@ -3336,8 +3150,11 @@ namespace AutoPANEL
 
                 Double azimuth = 0 + (pt.arraySettings.Azumuth / Math.PI * 180);
                 double yOffset2 = pt.boundary[0].Y * ms.scale - (image.Height * ms.scale);
-
-                PointCollection pc = pt.panelList[pt.SelectedIndex].points;
+                PointCollection pc = new PointCollection();
+                foreach (PanelPoint p in pt.PanelLayoutPoints[pt.SelectedIndex].set)
+                {
+                    pc.Add(p.point);
+                }
                 //MessageBox.Show(pc.Count.ToString());
                 Point origin = pc[0];
 
@@ -3701,6 +3518,11 @@ namespace AutoPANEL
             catch { }
 
         }
+
+        private void PanelTypesGlobal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }
@@ -3708,7 +3530,7 @@ namespace AutoPANEL
 
 //TODO:
 
- 
+
 
 
 

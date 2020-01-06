@@ -12,95 +12,96 @@
     <Grid OpacityMask="Black" Background="#FFDAD4D4" Margin="0,0,0,5">
         <Grid.RowDefinitions>
             <RowDefinition Height="82*"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="230"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <TextBox x:Name="xBox" Width="54" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="23,30,485,0" RenderTransformOrigin="0.504,0.608" Visibility="Hidden" Grid.Column="1" />
-        <TextBlock x:Name="xLabel" TextWrapping="Wrap" Text="X (Meters):" HorizontalAlignment="Center" Margin="164,30,8,0" Height="20" Width="58" VerticalAlignment="Top" Visibility="Hidden"/>
-
-        <TextBox x:Name="yBox" Width="60" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="139,30,363,0" Visibility="Hidden" Grid.Column="1" >
+        <TextBox x:Name="xBox" Width="54" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top"
+             Margin="23,30,485,0" RenderTransformOrigin="0.504,0.608" Visibility="Hidden" Grid.Column="1"/>
+        <TextBlock x:Name="xLabel" TextWrapping="Wrap" Text="X (Meters):" HorizontalAlignment="Center"
+               Margin="164,30,8,0" Height="20" Width="58" VerticalAlignment="Top" Visibility="Hidden"/>
+        <TextBox x:Name="yBox" Width="60" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top"
+             Margin="139,30,363,0" Visibility="Hidden" Grid.Column="1">
         </TextBox>
-        <TextBlock x:Name="yLabel" TextWrapping="Wrap" Text="Y (Meters):" HorizontalAlignment="Center" Margin="95,30,409,0" Height="20" Width="58" VerticalAlignment="Top" Visibility="Hidden" Grid.Column="1"/>
-        <Button x:Name="button" HorizontalAlignment="Left" Margin="153,57,0,0" VerticalAlignment="Top" Width="60" Click="PrintPDF_Click" Height="40">
-
+        <TextBlock x:Name="yLabel" TextWrapping="Wrap" Text="Y (Meters):" HorizontalAlignment="Center"
+               Margin="95,30,409,0" Height="20" Width="58" VerticalAlignment="Top" Visibility="Hidden"
+               Grid.Column="1"/>
+        <Button Click="PrintPDF_Click" x:Name="button" HorizontalAlignment="Left" Margin="153,57,0,0"
+            VerticalAlignment="Top" Width="60" Height="40">
             <TextBlock TextWrapping="Wrap" Text="PRINT PDF" TextAlignment="Center"/>
         </Button>
-        <TextBox x:Name="percentBox" HorizontalAlignment="Left" Height="35" Margin="13,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.84,-12.817" TextChanged="PercentBox_TextChanged" FontSize="24" TextAlignment="Center" Visibility="Hidden"/>
-        <Button x:Name="saveButton" Content="SAVE" HorizontalAlignment="Left" Margin="83,17,0,0" VerticalAlignment="Top" Width="60" Click="SaveButton_Click_1" RenderTransformOrigin="2.539,3.125" Height="26"/>
-        <Button x:Name="load" Content="LOAD" HorizontalAlignment="Left" Margin="153,17,0,0" VerticalAlignment="Top" Width="60" Click="Load_Click_1" RenderTransformOrigin="0.499,1.583" Height="26"/>
-        <Button x:Name="New" Content="NEW" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" Width="60" Click="New_Click_1" RenderTransformOrigin="0.499,1.583" Height="26"/>
-        <Button x:Name="button_Copy"  HorizontalAlignment="Left" Margin="83,57,0,0" VerticalAlignment="Top" Width="60" Click="ExportImage_click" Height="40" RenderTransformOrigin="1.008,0.442">
+        <TextBox x:Name="percentBox" x:FieldModifier="public" HorizontalAlignment="Left" Height="35"
+             Margin="13,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
+             RenderTransformOrigin="0.84,-12.817" FontSize="24" TextAlignment="Center" Visibility="Hidden"/>
+        <Button Click="SaveButton_Click_1" x:Name="saveButton" Content="SAVE" HorizontalAlignment="Left"
+            Margin="83,17,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="2.539,3.125"
+            Height="26"/>
+        <Button Click="Load_Click_1" x:Name="load" Content="LOAD" HorizontalAlignment="Left" Margin="153,17,0,0"
+            VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.499,1.583" Height="26"/>
+        <Button Click="New_Click_1" x:Name="New" Content="NEW" HorizontalAlignment="Left" Margin="13,17,0,0"
+            VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.499,1.583" Height="26"/>
+        <Button Click="ExportImage_click" x:Name="button_Copy" HorizontalAlignment="Left" Margin="83,57,0,0"
+            VerticalAlignment="Top" Width="60" Height="40" RenderTransformOrigin="1.008,0.442">
             <TextBlock TextWrapping="Wrap" Text="EXPORT IMAGE" TextAlignment="Center"/>
         </Button>
-
-
-        <TabControl x:Name="tabby1" Margin="10,50,21,26" SelectionChanged="Tabby1_SelectionChanged" Grid.Column="1" Grid.RowSpan="2">
+        <TabControl SelectionChanged="Tabby1_SelectionChanged" x:Name="tabby1" Margin="10,50,21,26" Grid.Column="1"
+                Grid.RowSpan="2">
             <TabItem Header="VIEWER" Margin="-2,0" HorizontalAlignment="Left" Width="52">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="279*"/>
                         <ColumnDefinition Width="227*"/>
                     </Grid.ColumnDefinitions>
-
-
-
-                    <Slider Grid.Column="0" Orientation="Vertical" 
-
-           HorizontalAlignment="Left" Minimum="0.5" Maximum="50" x:Name="slider"/>
-                    <ScrollViewer Name="scrollie" 
-
-              VerticalScrollBarVisibility="Visible" 
-
-              HorizontalScrollBarVisibility="Visible" Margin="20,0,0,0" Grid.ColumnSpan="2">
-
-                        <Grid Name="grid" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="460" MinHeight="460" Width="460" Height="460">
-
-
-                            <Grid.LayoutTransform>
+                    <Slider x:Name="slider" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Minimum="0.5"
+                  Maximum="50"/>
+                    <ScrollViewer Name="scrollie" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"
+                        Margin="20,0,0,0" Grid.ColumnSpan="2">
+                        <Grid Name="grid" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left"
+                  MinWidth="460" MinHeight="460" Width="460" Height="460">
+                            <FrameworkElement.LayoutTransform>
                                 <TransformGroup>
                                     <ScaleTransform x:Name="scaleTransform"/>
                                 </TransformGroup>
-                            </Grid.LayoutTransform>
-                            <Viewbox x:Name="viewy"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="5">
-                                <Canvas x:Name="TheCanvas" MouseMove="TheCanvas_MouseMove" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0" MouseLeftButtonDown="TheCanvas_MouseLeftButtonDown" MinWidth="450" MinHeight="450" Cursor="Cross"  >
-                                    <Canvas.LayoutTransform>
-                                        <ScaleTransform x:Name="scaleT" ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
-                                    </Canvas.LayoutTransform>
-                                    <Image x:Name="ImageViewer1"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="0" Width="1000"  RenderTransformOrigin="0.5,0.5" Opacity="1" >
-                                        <Image.RenderTransform>
+                            </FrameworkElement.LayoutTransform>
+                            <Viewbox x:Name="viewy" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="5">
+                                <Canvas MouseMove="TheCanvas_MouseMove" MouseLeftButtonDown="TheCanvas_MouseLeftButtonDown"
+                        x:Name="TheCanvas" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0" MinWidth="450"
+                        MinHeight="450" Cursor="Cross">
+                                    <FrameworkElement.LayoutTransform>
+                                        <ScaleTransform x:Name="scaleT" ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5"/>
+                                    </FrameworkElement.LayoutTransform>
+                                    <Image x:Name="ImageViewer1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="0"
+                         Width="1000" RenderTransformOrigin="0.5,0.5" Opacity="1">
+                                        <UIElement.RenderTransform>
                                             <TransformGroup>
                                                 <ScaleTransform ScaleY="-1" ScaleX="1"/>
                                                 <SkewTransform AngleY="0" AngleX="0"/>
                                                 <RotateTransform Angle="0"/>
                                                 <TranslateTransform/>
                                             </TransformGroup>
-                                        </Image.RenderTransform>
+                                        </UIElement.RenderTransform>
                                     </Image>
                                 </Canvas>
                             </Viewbox>
                         </Grid>
-
                     </ScrollViewer>
-
                 </Grid>
-
             </TabItem>
             <TabItem x:Name="tabby" Header="ARRAY SETTINGS">
                 <Grid Background="#FFE5E5E5" MinWidth="450" MinHeight="400.2">
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="34"/>
-
                         <RowDefinition Height="343"/>
                         <RowDefinition Height="80*"/>
                     </Grid.RowDefinitions>
-                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="106,14,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" TextAlignment="Center" FontSize="24" Grid.RowSpan="2" RenderTransformOrigin="0.759,1.795" Height="31"><Run Text="Array"/><Run Text=" "/><Run Text="Settings"/></TextBlock>
-                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450" MinHeight="200" Grid.Row="1" Grid.ColumnSpan="2">
+                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100"
+                        Grid.RowSpan="2" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                     TextAlignment="Center" FontSize="21" RenderTransformOrigin="0.759,1.795" Height="25"
+                     Text="SELECTED ARRAY SETTINGS"/>
+                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450"
+                MinHeight="200" Row="1" ColumnSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -116,9 +117,12 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-
-
-
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="154*"/>
@@ -126,69 +130,214 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="155*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock TextWrapping="Wrap" RenderTransformOrigin="0.559,3.25" TextAlignment="Center" FontSize="14" Text="Array Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="arrayName" TextWrapping="Wrap" Text="Untitled" Width="100"  TextAlignment="Center" RenderTransformOrigin="5.94,-0.75" Grid.Row="1" TextChanged="ArrayName_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Panel"/><Run Text=" "/><Run Text="Direction"/><Run Text=" (0=North)"/></TextBlock>
-                        <TextBox x:Name="azimuth" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" TextChanged="Azimuth_TextChanged" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="GapAcross" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" TextChanged="GapAcross_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Gap Between Panels Across"/><Run Text=" (mm"/><Run Text=")"/></TextBlock>
-                        <TextBox x:Name="GapDown" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" TextChanged="GapDown_TextChanged" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="PanelsDown" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" TextChanged="PanelsDown_TextChanged" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="PanelsAcross" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" TextChanged="PanelsAcross_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Gap Between Panels "/><Run Text="Down"/><Run Text=" (mm"/><Run Text=")"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Walkway Across Siz"/><Run Text="e (mm)"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Walkway "/><Run Text="Down"/><Run Text=" Siz"/><Run Text="e (mm)"/></TextBlock>
-                        <TextBox x:Name="WalkwaySizeAcross" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" TextChanged="WalkwaySizeAcross_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="WalkwaySizeDown" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" Grid.Column="3" TextChanged="WalkwaySizeDown_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Consecutive Panels "/><LineBreak/><Run Text="between Walkways"/><Run Text=" Across"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Consecutive Panels "/><LineBreak/><Run Text="between Walkways"/><Run Text=" "/><Run Text="Down"/></TextBlock>
-                        <ComboBox x:Name="PanelTypes" HorizontalAlignment="Center" Margin="31,0.6,29.2,0" VerticalAlignment="Top" ItemsSource="{Binding}" SelectionChanged="PanelTypes_SelectionChanged" Grid.Row="13" MinWidth="170" DropDownClosed="OrientationBox_DropDownClosed"/>
-                        <ComboBox x:Name="OrientationBox" Grid.Column="3" HorizontalAlignment="Center" Margin="32,0,30,9" VerticalAlignment="Center" SelectionChanged="PanelTypes_SelectionChanged" Grid.Row="13" RenderTransformOrigin="0.499,1.17" MinWidth="170" DropDownClosed="OrientationBox_DropDownClosed_1"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="12" VerticalAlignment="Center" Margin="10,0,10,2" HorizontalAlignment="Center"><Run Text="Panel Type"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="12" Grid.Column="3" VerticalAlignment="Center" Margin="8,0,14,2" HorizontalAlignment="Center"><Run Text="Panel "/><Run Text="Orientation"/></TextBlock>
-                        <TextBox x:Name="rowSpacing" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Margin="0,0,0,5" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" TextChanged="RowSpacing_TextChanged"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="19,18,22,16" Grid.Row="7" HorizontalAlignment="Center" Grid.RowSpan="3" Width="183"><Run Text="Roof"/><Run Text=" Pitch (degrees)"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="8" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,11,0" HorizontalAlignment="Center" Text="Array Pitch (degrees)"/>
-                        <TextBox x:Name="RoofPitch" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="9" Margin="0,0,0,5" TextChanged="RoofPitch_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox x:Name="ArrayPitch" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="14" Grid.Row="9" Grid.Column="3" Margin="0,0,0,5" VerticalAlignment="Center" TextChanged="ArrayPitch_TextChanged" HorizontalAlignment="Center"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="12,0,8,0" Grid.Row="10" HorizontalAlignment="Center"><Run Text="Recommended S"/><Run Text="pacing"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="11,0" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center"><Run Text="Use Recommended "/><Run Text="Spacing"/></TextBlock>
-                        <CheckBox x:Name="SpacingCheck" Content="" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,5" Grid.Row="11" VerticalAlignment="Center" VerticalContentAlignment="Center" Checked="SpacingCheck_Checked"/>
+                        <TextBlock TextWrapping="Wrap" RenderTransformOrigin="0.559,3.25" TextAlignment="Center" FontSize="10"
+                       Text="Array Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBox TextChanged="arrayName_TextChanged" x:Name="arrayName" TextWrapping="Wrap" FontSize="10"
+                     Text="Untitled" Width="100" TextAlignment="Center" RenderTransformOrigin="5.94,-0.75" Grid.Row="1"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Panel"/>
+              <Run Text=" "/>
+              <Run Text="Direction"/>
+              <Run Text=" (0=North)"/>
+                        </TextBlock>
+                        <TextBox x:Name="azimuth" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" Height="14" FontSize="10"/>
+                        <TextBox TextChanged="GapAcross_TextChanged" x:Name="GapAcross" TextWrapping="Wrap" Text="26" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Gap Between Panels Across"/>
+              <Run Text=" (mm"/>
+              <Run Text=")"/>
+                        </TextBlock>
+                        <TextBox TextChanged="GapDown_TextChanged" x:Name="GapDown" TextWrapping="Wrap" Text="26" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" Grid.Column="3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBox TextChanged="PanelsDown_TextChanged" x:Name="PanelsDown" TextWrapping="Wrap" Text="4" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" Grid.Column="3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBox TextChanged="PanelsAcross_TextChanged" x:Name="PanelsAcross" TextWrapping="Wrap" Text="50"
+                     Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+              <Run Text="Gap Between Panels "/>
+              <Run Text="Down"/>
+              <Run Text=" (mm"/>
+              <Run Text=")"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Walkway Across Siz"/>
+              <Run Text="e (mm)"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Walkway "/>
+              <Run Text="Down"/>
+              <Run Text=" Siz"/>
+              <Run Text="e (mm)"/>
+                        </TextBlock>
+                        <TextBox TextChanged="WalkwaySizeAcross_TextChanged" x:Name="WalkwaySizeAcross" TextWrapping="Wrap"
+                     Text="800" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBox TextChanged="WalkwaySizeDown_TextChanged" x:Name="WalkwaySizeDown" TextWrapping="Wrap" Text="800"
+                     Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" Grid.Column="3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Margin="17,0.222,13.889,16.444" Grid.RowSpan="2">
+              <Run Text="Consecutive Panels between Walkways"/>
+              <Run Text=" Across"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Consecutive Panels between Walkways"/>
+              <Run Text=" "/>
+              <Run Text="Down"/>
+                        </TextBlock>
+                        <ComboBox SelectionChanged="PanelTypes_SelectionChanged" x:Name="PanelTypes" FontSize="10"
+                      HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Grid.Row="19" MinWidth="170"
+                      ItemsSource="{Binding}"/>
+                        <ComboBox SelectionChanged="OrientationBox_SelectionChanged" x:Name="OrientationBox" FontSize="10"
+                      Grid.Column="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Grid.Row="19"
+                      RenderTransformOrigin="0.499,1.17" MinWidth="170"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="18" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" Width="51">
+              <Run Text="Panel Type"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="18" Grid.Column="3" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center">
+              <Run Text="Panel "/>
+              <Run Text="Orientation"/>
+                        </TextBlock>
+                        <TextBox x:Name="rowSpacing" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" Margin="0,0,0,3" Grid.Row="11" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="19,18,22,16" Grid.Row="7" HorizontalAlignment="Center"
+                       Grid.RowSpan="3" Width="183">
+              <Run Text="Roof"/>
+              <Run Text=" Pitch (degrees)"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="8" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,11,0"
+                       HorizontalAlignment="Center" Text="Array Pitch (degrees)"/>
+                        <TextBox TextChanged="RoofPitch_TextChanged" x:Name="RoofPitch" TextWrapping="Wrap" Text="10" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="9" Margin="0,0,0,3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox TextChanged="ArrayPitch_TextChanged" x:Name="ArrayPitch" TextWrapping="Wrap" Text="10" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="10" Grid.Row="9"
+                     Grid.Column="3" Margin="0,0,0,3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="12,0,8,0" Grid.Row="10" HorizontalAlignment="Center">
+              <Run Text="Recommended S"/>
+              <Run Text="pacing"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="11,0" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center">
+              <Run Text="Use Recommended "/>
+              <Run Text="Spacing"/>
+                        </TextBlock>
+                        <CheckBox Checked="SpacingCheck_Checked" x:Name="SpacingCheck" Content="" Grid.Column="3"
+                      HorizontalAlignment="Center" Margin="0,0,0,5" Grid.Row="11" VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="24,1,25.889,0.111" Grid.Row="12" HorizontalAlignment="Center"
+                       Width="183" Text="Tests Across"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="29.778,2,21.444,14.222" Grid.Row="12"
+                       HorizontalAlignment="Center" Grid.RowSpan="2" Width="183" Grid.Column="3" Text="Tests Down"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="24,14.889,25.889,1.222" Grid.Row="13"
+                       HorizontalAlignment="Center" Grid.RowSpan="2" Width="183" Text="Test Step Across (mm)"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="0" Grid.Row="16" HorizontalAlignment="Center" Width="183"
+                       Text="Origin Offset Left (mm)"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="25.778,1.778,25.444,0.222" Grid.Row="14"
+                       HorizontalAlignment="Center" Width="183" Grid.Column="3" Text="Test Step Down (mm)"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="29.778,0,21.444,0" Grid.Row="16" HorizontalAlignment="Center"
+                       Width="183" Grid.Column="3" Text="Origin Offset Down (mm)"/>
+                        <TextBox x:Name="testAcross" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" Margin="66,0.889,66.889,0.222" Grid.Row="13" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox x:Name="stepAcross" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" Margin="66,2.778,66.889,3.222" Grid.Row="15" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox TextChanged="offset_TextChanged" x:Name="offsetX" TextWrapping="Wrap" Text="0" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Margin="66,0,66.889,0" Grid.Row="17"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox x:Name="testDown" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" FontSize="10" Grid.Row="13" Grid.Column="3"
+                     Margin="66.778,0.889,67.444,0.222" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Height="14"/>
+                        <TextBox x:Name="stepDown" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" FontSize="10" Grid.Row="15" Grid.Column="3"
+                     Margin="66.778,2.778,67.444,3.222" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Height="14"/>
+                        <TextBox TextChanged="offset_TextChanged" x:Name="offsetY" TextWrapping="Wrap" Text="10" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="10" Grid.Row="17"
+                     Grid.Column="3" Margin="66.778,0,67.444,0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Height="14"/>
                     </Grid>
-                    <Grid Height="50" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                    <Grid Height="50" Margin="0,10,0,0" Row="2" VerticalAlignment="Top" ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
-
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" Grid.Column="1"><Run Text="Outline Color"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center"><Run Text="Panel"/><Run Text=" Color"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Margin="0" Width="100"><Run Text="Exclusion "/><Run Text="Color"/></TextBlock>
-                        <ComboBox x:Name="panelColorList1" HorizontalAlignment="Center" Margin="38,3,10,0" VerticalAlignment="Top" ItemsSource="{Binding}" Grid.Row="1" MinWidth="100" Width="127" SelectionChanged="PanelColorList1_SelectionChanged"/>
-                        <ComboBox x:Name="outlineColorList1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" ItemsSource="{Binding}" Grid.Row="1" MinWidth="100" Width="100" Grid.Column="1" SelectionChanged="OutlineColorList1_SelectionChanged"/>
-                        <ComboBox x:Name="shadingColorList1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" ItemsSource="{Binding}" Grid.Row="1" MinWidth="100" Width="100" Grid.Column="2" SelectionChanged="ShadingColorList1_SelectionChanged"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" Grid.Column="1">
+              <Run Text="Outline Color"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center">
+              <Run Text="Panel"/>
+              <Run Text=" Color"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Margin="0" Width="100">
+              <Run Text="Exclusion "/>
+              <Run Text="Color"/>
+                        </TextBlock>
+                        <ComboBox SelectionChanged="PanelColorList1_SelectionChanged" x:Name="panelColorList1"
+                      HorizontalAlignment="Center" Margin="38,3,10,0" VerticalAlignment="Top" Grid.Row="1" MinWidth="100"
+                      Width="127" ItemsSource="{Binding}"/>
+                        <ComboBox SelectionChanged="OutlineColorList1_SelectionChanged" x:Name="outlineColorList1"
+                      HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Grid.Row="1" MinWidth="100"
+                      Width="100" Grid.Column="1" ItemsSource="{Binding}"/>
+                        <ComboBox SelectionChanged="ShadingColorList1_SelectionChanged" x:Name="shadingColorList1"
+                      HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Grid.Row="1" MinWidth="100"
+                      Width="100" Grid.Column="2" ItemsSource="{Binding}"/>
                     </Grid>
                 </Grid>
-
             </TabItem>
             <TabItem x:Name="tabbya" Header="GLOBAL SETTINGS" Width="100">
                 <Grid Background="#FFE5E5E5" MinWidth="450" MinHeight="400.2">
-
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="34"/>
-
                         <RowDefinition Height="343"/>
                         <RowDefinition Height="80*"/>
                     </Grid.RowDefinitions>
-                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Grid.Column="2"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32"><Run Text="Global "/><Run Text="Array"/><Run Text=" "/><Run Text="Settings"/><Run Text=" "/></TextBlock>
-                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450" MinHeight="200" Grid.Row="1" Grid.ColumnSpan="3">
+                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100"
+                        Grid.RowSpan="2" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                     TextAlignment="Center" FontSize="21" RenderTransformOrigin="0.759,1.795" Height="25"
+                     Text="DEFAULT ARRAY SETTINGS"/>
+                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450"
+                MinHeight="200" Row="1" ColumnSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -204,9 +353,12 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-
-
-
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="154*"/>
@@ -214,70 +366,213 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="155*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock TextWrapping="Wrap" RenderTransformOrigin="0.559,3.25" TextAlignment="Center" FontSize="14" Text="Array Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="arrayNameGlobal" TextWrapping="Wrap" Text="Untitled" Width="100"  TextAlignment="Center" RenderTransformOrigin="5.94,-0.75" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Panel"/><Run Text=" "/><Run Text="Direction"/><Run Text=" (0=North)"/></TextBlock>
-                        <TextBox x:Name="azimuthGlobal" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" TextChanged="Azimuth_TextChanged" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="GapAcrossGlobal" TextWrapping="Wrap" Text="26" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Gap Between Panels Across"/><Run Text=" (mm"/><Run Text=")"/></TextBlock>
-                        <TextBox x:Name="GapDownGlobal" TextWrapping="Wrap" Text="26" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" TextChanged="GapDown_TextChanged" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="PanelsDownGlobal" TextWrapping="Wrap" Text="4" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" TextChanged="PanelsDown_TextChanged" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="PanelsAcrossGlobal" TextWrapping="Wrap" Text="50" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Gap Between Panels "/><Run Text="Down"/><Run Text=" (mm"/><Run Text=")"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Walkway Across Siz"/><Run Text="e (mm)"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Walkway "/><Run Text="Down"/><Run Text=" Siz"/><Run Text="e (mm)"/></TextBlock>
-                        <TextBox x:Name="WalkwaySizeAcrossGlobal" TextWrapping="Wrap" Text="800" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBox x:Name="WalkwaySizeDownGlobal" TextWrapping="Wrap" Text="800" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Consecutive Panels "/><LineBreak/><Run Text="between Walkways"/><Run Text=" Across"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Consecutive Panels "/><LineBreak/><Run Text="between Walkways"/><Run Text=" "/><Run Text="Down"/></TextBlock>
-                        <ComboBox x:Name="PanelTypesGlobal" HorizontalAlignment="Center" Margin="31,0,29,9" VerticalAlignment="Center" ItemsSource="{Binding}" SelectionChanged="PanelTypes_SelectionChanged" Grid.Row="13" MinWidth="170"/>
-                        <ComboBox x:Name="OrientationBoxGlobal" Grid.Column="3" HorizontalAlignment="Center" Margin="32,0,30,9" VerticalAlignment="Center" SelectionChanged="PanelTypes_SelectionChanged" Grid.Row="13" RenderTransformOrigin="0.499,1.17" MinWidth="170"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="12" VerticalAlignment="Center" Margin="10,0,10,2" HorizontalAlignment="Center"><Run Text="Panel Type"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="12" Grid.Column="3" VerticalAlignment="Center" Margin="8,0,14,2" HorizontalAlignment="Center"><Run Text="Panel "/><Run Text="Orientation"/></TextBlock>
-                        <TextBox x:Name="rowSpacingGlobal" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Margin="0,0,0,5" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="19,18,22,16" Grid.Row="7" HorizontalAlignment="Center" Grid.RowSpan="3" Width="183"><Run Text="Roof"/><Run Text=" Pitch (degrees)"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" Grid.Row="8" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,11,0" HorizontalAlignment="Center" Text="Array Pitch (degrees)"/>
-                        <TextBox x:Name="RoofPitchGlobal" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="9" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Center" TextChanged="RoofPitchGlobal_TextChanged"/>
-                        <TextBox x:Name="ArrayPitchGlobal" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="14" Grid.Row="9" Grid.Column="3" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="12,0,8,0" Grid.Row="10" HorizontalAlignment="Center"><Run Text="Recommended S"/><Run Text="pacing"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="11,0" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center"><Run Text="Use Recommended "/><Run Text="Spacing"/></TextBlock>
-                        <CheckBox x:Name="SpacingCheckGlobal" Content="" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,5" Grid.Row="11" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" RenderTransformOrigin="0.559,3.25" TextAlignment="Center" FontSize="10"
+                       Text="Array Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="arrayNameGlobal" TextWrapping="Wrap" FontSize="10" Text="Untitled" Width="100"
+                     TextAlignment="Center" RenderTransformOrigin="5.94,-0.75" Grid.Row="1" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Panel"/>
+              <Run Text=" "/>
+              <Run Text="Direction"/>
+              <Run Text=" (0=North)"/>
+                        </TextBlock>
+                        <TextBox x:Name="azimuthGlobal" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" Height="14" FontSize="10"/>
+                        <TextBox x:Name="GapAcrossGlobal" TextWrapping="Wrap" Text="26" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Gap Between Panels Across"/>
+              <Run Text=" (mm"/>
+              <Run Text=")"/>
+                        </TextBlock>
+                        <TextBox TextChanged="GapDown_TextChanged" x:Name="GapDownGlobal" TextWrapping="Wrap" Text="26" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="3" Grid.Column="3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBox TextChanged="PanelsDown_TextChanged" x:Name="PanelsDownGlobal" TextWrapping="Wrap" Text="4"
+                     Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" Grid.Column="3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBox x:Name="PanelsAcrossGlobal" TextWrapping="Wrap" Text="50" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="5" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+              <Run Text="Gap Between Panels "/>
+              <Run Text="Down"/>
+              <Run Text=" (mm"/>
+              <Run Text=")"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Walkway Across Siz"/>
+              <Run Text="e (mm)"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Walkway "/>
+              <Run Text="Down"/>
+              <Run Text=" Siz"/>
+              <Run Text="e (mm)"/>
+                        </TextBlock>
+                        <TextBox x:Name="WalkwaySizeAcrossGlobal" TextWrapping="Wrap" Text="800" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBox x:Name="WalkwaySizeDownGlobal" TextWrapping="Wrap" Text="800" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="7" Grid.Column="3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Margin="17,0.222,13.889,16.444" Grid.RowSpan="2">
+              <Run Text="Consecutive Panels between Walkways"/>
+              <Run Text=" Across"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <Run Text="Consecutive Panels between Walkways"/>
+              <Run Text=" "/>
+              <Run Text="Down"/>
+                        </TextBlock>
+                        <ComboBox x:Name="PanelTypesGlobal" FontSize="10" HorizontalAlignment="Center" Margin="0"
+                      VerticalAlignment="Center" Grid.Row="19" MinWidth="170" ItemsSource="{Binding}" SelectionChanged="PanelTypesGlobal_SelectionChanged"/>
+                        <ComboBox x:Name="OrientationBoxGlobal" FontSize="10" Grid.Column="3" HorizontalAlignment="Center" Margin="0"
+                      VerticalAlignment="Center" Grid.Row="19" RenderTransformOrigin="0.499,1.17" MinWidth="170"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="18" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" Width="51">
+              <Run Text="Panel Type"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="18" Grid.Column="3" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center">
+              <Run Text="Panel "/>
+              <Run Text="Orientation"/>
+                        </TextBlock>
+                        <TextBox x:Name="rowSpacingGlobal" TextWrapping="Wrap" Text="0" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Margin="0,0,0,3" Grid.Row="11"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="19,18,22,16" Grid.Row="7" HorizontalAlignment="Center"
+                       Grid.RowSpan="3" Width="183">
+              <Run Text="Roof"/>
+              <Run Text=" Pitch (degrees)"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       Grid.Row="8" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,11,0"
+                       HorizontalAlignment="Center" Text="Array Pitch (degrees)"/>
+                        <TextBox TextChanged="RoofPitchGlobal_TextChanged" x:Name="RoofPitchGlobal" TextWrapping="Wrap" Text="10"
+                     Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="9" Margin="0,0,0,3"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox x:Name="ArrayPitchGlobal" TextWrapping="Wrap" Text="10" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="10" Grid.Row="9"
+                     Grid.Column="3" Margin="0,0,0,3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Height="14"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="12,0,8,0" Grid.Row="10" HorizontalAlignment="Center">
+              <Run Text="Recommended S"/>
+              <Run Text="pacing"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="11,0" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center">
+              <Run Text="Use Recommended "/>
+              <Run Text="Spacing"/>
+                        </TextBlock>
+                        <CheckBox x:Name="SpacingCheckGlobal" Content="" Grid.Column="3" HorizontalAlignment="Center"
+                      Margin="0,0,0,5" Grid.Row="11" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="24,1,25.889,0.111" Grid.Row="12" HorizontalAlignment="Center"
+                       Width="183" Text="Tests Across"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="29.778,2,21.444,14.222" Grid.Row="12"
+                       HorizontalAlignment="Center" Grid.RowSpan="2" Width="183" Grid.Column="3" Text="Tests Down"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="24,14.889,25.889,1.222" Grid.Row="13"
+                       HorizontalAlignment="Center" Grid.RowSpan="2" Width="183" Text="Test Step Across (mm)"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="0" Grid.Row="16" HorizontalAlignment="Center" Width="183"
+                       Text="Origin Offset Left (mm)"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="25.778,1.778,25.444,0.222" Grid.Row="14"
+                       HorizontalAlignment="Center" Width="183" Grid.Column="3" Text="Test Step Down (mm)"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="10" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="29.778,0,21.444,0" Grid.Row="16" HorizontalAlignment="Center"
+                       Width="183" Grid.Column="3" Text="Origin Offset Down (mm)"/>
+                        <TextBox x:Name="testAcrossGlobal" TextWrapping="Wrap" Text="3" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Margin="66,0.889,66.889,0.222"
+                     Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox x:Name="stepAcrossGlobal" TextWrapping="Wrap" Text="3" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Margin="66,2.778,66.889,3.222"
+                     Grid.Row="15" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox x:Name="offsetXGlobal" TextWrapping="Wrap" Text="0" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" Margin="66,0,66.889,0" Grid.Row="17" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" FontSize="10" Height="14"/>
+                        <TextBox x:Name="testDownGlobal" TextWrapping="Wrap" Text="10" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="10" Grid.Row="13"
+                     Grid.Column="3" Margin="66.778,0.889,67.444,0.222" VerticalAlignment="Center"
+                     HorizontalAlignment="Center" Height="14"/>
+                        <TextBox x:Name="stepDownGlobal" TextWrapping="Wrap" Text="10" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="10" Grid.Row="15"
+                     Grid.Column="3" Margin="66.778,2.778,67.444,3.222" VerticalAlignment="Center"
+                     HorizontalAlignment="Center" Height="14"/>
+                        <TextBox x:Name="offsetYGlobal" TextWrapping="Wrap" Text="10" Width="100" RenderTransformOrigin="0.5,-0.238"
+                     TextAlignment="Center" FontSize="10" Grid.Row="17" Grid.Column="3" Margin="66.778,0,67.444,0"
+                     VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
                     </Grid>
-                    <Grid Height="50" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                    <Grid Height="50" Margin="0,10,0,0" Row="2" VerticalAlignment="Top" ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
-
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" Grid.Column="1"><Run Text="Outline Color"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center"><Run Text="Panel"/><Run Text=" Color"/></TextBlock>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Margin="0" Width="100"><Run Text="Exclusion "/><Run Text="Color"/></TextBlock>
-                        <ComboBox x:Name="panelColorList1Glob" HorizontalAlignment="Center" Margin="38,3,10,0" VerticalAlignment="Top" ItemsSource="{Binding}" Grid.Row="1" MinWidth="100" Width="127" SelectionChanged="PanelColorList1_SelectionChanged"/>
-                        <ComboBox x:Name="outlineColorList1Glob" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" ItemsSource="{Binding}" Grid.Row="1" MinWidth="100" Width="100" Grid.Column="1" SelectionChanged="OutlineColorList1_SelectionChanged"/>
-                        <ComboBox x:Name="shadingColorList1Glob" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" ItemsSource="{Binding}" Grid.Row="1" MinWidth="100" Width="100" Grid.Column="2" SelectionChanged="ShadingColorList1_SelectionChanged"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" Grid.Column="1">
+              <Run Text="Outline Color"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center">
+              <Run Text="Panel"/>
+              <Run Text=" Color"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14" RenderTransformOrigin="2.946,0.95"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Margin="0" Width="100">
+              <Run Text="Exclusion "/>
+              <Run Text="Color"/>
+                        </TextBlock>
+                        <ComboBox SelectionChanged="PanelColorList1_SelectionChanged" x:Name="panelColorList1Glob"
+                      HorizontalAlignment="Center" Margin="38,3,10,0" VerticalAlignment="Top" Grid.Row="1" MinWidth="100"
+                      Width="127" ItemsSource="{Binding}"/>
+                        <ComboBox SelectionChanged="OutlineColorList1_SelectionChanged" x:Name="outlineColorList1Glob"
+                      HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Grid.Row="1" MinWidth="100"
+                      Width="100" Grid.Column="1" ItemsSource="{Binding}"/>
+                        <ComboBox SelectionChanged="ShadingColorList1_SelectionChanged" x:Name="shadingColorList1Glob"
+                      HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Grid.Row="1" MinWidth="100"
+                      Width="100" Grid.Column="2" ItemsSource="{Binding}"/>
                     </Grid>
                 </Grid>
-
             </TabItem>
-
             <TabItem x:Name="tabbyb" Header="TEST SETTINGS">
                 <Grid Background="#FFE5E5E5" MinWidth="450" MinHeight="400.2">
-
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="34"/>
-
                         <RowDefinition Height="360"/>
                         <RowDefinition Height="80*"/>
                     </Grid.RowDefinitions>
-                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Grid.Column="2"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32"><Run Text="Test "/><Run Text="Settings"/><Run Text=" "/></TextBlock>
-                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450" MinHeight="200" Grid.Row="1" Grid.ColumnSpan="3">
+                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100"
+                        Grid.RowSpan="2" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                     TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32">
+            <Run Text="Test "/>
+            <Run Text="Settings"/>
+            <Run Text=" "/>
+                    </TextBlock>
+                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450"
+                MinHeight="200" Row="1" ColumnSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
@@ -290,13 +585,9 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="30
-                                           "/>
+                            <RowDefinition Height="30                                            "/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-
-
-
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="154*"/>
@@ -304,35 +595,69 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="155*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" Text="Latitude" FontSize="14" TextAlignment="Center"/>
-                        <TextBox x:Name="latitudeBox" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="-35" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="1" TextChanged="LatitudeBox_TextChanged"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" Text="Line Thickness" FontSize="14" TextAlignment="Center" Grid.Row="2"/>
-                        <TextBox x:Name="lineThickness" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="10" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="14" TextChanged="LineThickness_TextChanged" Grid.Row="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" Text="Drawing Scale" FontSize="14" TextAlignment="Center" Grid.Row="4"/>
-                        <TextBox x:Name="scaleBox" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="3" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="5" TextChanged="ScaleBox_TextChanged"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14"><Run Text="Test Step "/><Run Text="A"/><Run Text="cross (mm)"/></TextBlock>
-                        <TextBox x:Name="xSect" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="300" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" TextChanged="XSect_TextChanged" Grid.Row="1" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="2" Grid.Column="3"><Run Text="Test Step "/><Run Text="Down"/><Run Text=" (mm)"/></TextBlock>
-                        <TextBox x:Name="ySect" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="300" VerticalAlignment="Center" Width="100"   RenderTransformOrigin="0.545,-2.043" TextAlignment="Center" FontSize="14" TextChanged="YSect_TextChanged" Grid.Row="3" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.515,3.875" TextAlignment="Center" Grid.Row="4" Grid.Column="3" FontSize="14" Text="Number of Tests Across"/>
-                        <TextBox x:Name="xTest" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="3" VerticalAlignment="Center" Width="100"  RenderTransformOrigin="0.545,-1.261" TextAlignment="Center" FontSize="14" TextChanged="XTest_TextChanged" Grid.Row="5" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" Text="Number of Tests Down" FontSize="14" TextAlignment="Center" Grid.Row="6" Grid.Column="3"/>
-                        <TextBox x:Name="yTest" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="3" VerticalAlignment="Center" Width="100"  TextAlignment="Center" FontSize="14" Grid.Row="7" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6"><Run Text="Title"/><Run Text=" Name"/></TextBlock>
-                        <TextBox x:Name="TitleName" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" TextAlignment="Center" FontSize="14" Grid.Row="7" TextChanged="TitleName_TextChanged"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="33,8,33,1" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Grid.Row="8"><Run Text="Sections Before"/><Run Text=" Origin"/></TextBlock>
-                        <TextBox x:Name="sectionsBefore" HorizontalAlignment="Center" Height="20" Margin="66,5,66,6" TextWrapping="Wrap" Text="60" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" TextChanged="XSect_TextChanged" Grid.Row="9" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="32,10,33,30" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="8" Text="Extra Panels" Grid.RowSpan="2"/>
-                        <TextBox x:Name="extraPanels" HorizontalAlignment="Center" Height="20" Margin="66,6,65,5" TextWrapping="Wrap" Text="20" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" TextChanged="ExtraPanels_TextChanged" Grid.Row="9"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="33,8.2,33,29.8" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="10" Text="PANEL IMAGE" Grid.RowSpan="2"/>
-                        <ComboBox x:Name="panelImage" HorizontalAlignment="Center" Margin="52,5.2,53,0" VerticalAlignment="Top" MinWidth="100" Width="127" Grid.Row="11" SelectionChanged="PanelImage_SelectionChanged"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" Text="Latitude" FontSize="14" TextAlignment="Center"/>
+                        <TextBox TextChanged="LatitudeBox_TextChanged" x:Name="latitudeBox" HorizontalAlignment="Center" Height="20"
+                     Margin="0,0,0,5" TextWrapping="Wrap" Text="-35" VerticalAlignment="Center" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="1"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" Text="Line Thickness" FontSize="14"
+                       TextAlignment="Center" Grid.Row="2"/>
+                        <TextBox TextChanged="LineThickness_TextChanged" x:Name="lineThickness" HorizontalAlignment="Center"
+                     Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="10" VerticalAlignment="Center" Width="100"
+                     RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" FontSize="14" Grid.Row="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" Text="Drawing Scale" FontSize="14"
+                       TextAlignment="Center" Grid.Row="4"/>
+                        <TextBox TextChanged="ScaleBox_TextChanged" x:Name="scaleBox" HorizontalAlignment="Center" Height="20"
+                     Margin="0,0,0,5" TextWrapping="Wrap" Text="3" VerticalAlignment="Center" Width="100"
+                     TextAlignment="Center" FontSize="14" Grid.Row="5"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14">
+              <Run Text="Test Step "/>
+              <Run Text="A"/>
+              <Run Text="cross (mm)"/>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="2"
+                       Grid.Column="3">
+              <Run Text="Test Step "/>
+              <Run Text="Down"/>
+              <Run Text=" (mm)"/>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.515,3.875" TextAlignment="Center" Grid.Row="4" Grid.Column="3"
+                       FontSize="14" Text="Number of Tests Across"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" Text="Number of Tests Down" FontSize="14"
+                       TextAlignment="Center" Grid.Row="6" Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6">
+              <Run Text="Title"/>
+              <Run Text=" Name"/>
+                        </TextBlock>
+                        <TextBox TextChanged="TitleName_TextChanged" x:Name="TitleName" HorizontalAlignment="Center" Height="20"
+                     Margin="0,0,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" TextAlignment="Center"
+                     FontSize="14" Grid.Row="7"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="33,8,33,1" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Grid.Row="8">
+              <Run Text="Shift Origin "/>
+              <Run Text="Left"/>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="33,8.2,33,29.8" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="10" Text="PANEL IMAGE"
+                       Grid.RowSpan="2"/>
+                        <ComboBox SelectionChanged="PanelImage_SelectionChanged" x:Name="panelImage" HorizontalAlignment="Center"
+                      Margin="52,5.2,53,0" VerticalAlignment="Top" MinWidth="100" Width="127" Grid.Row="11"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="33.778,7.444,34.444,0.556" TextWrapping="Wrap"
+                       VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" FontSize="14"
+                       Grid.Row="10" Text="Shift Origin Down" Grid.Column="3"/>
                     </Grid>
-                    <Grid Height="50" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                    <Grid Height="50" Margin="0,10,0,0" Row="2" VerticalAlignment="Top" ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
-
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
@@ -340,21 +665,25 @@
                         </Grid.RowDefinitions>
                     </Grid>
                 </Grid>
-
             </TabItem>
             <TabItem x:Name="autoCAD" Header="DRAWING SETTINGS">
                 <Grid Background="#FFE5E5E5" MinWidth="450" MinHeight="400.2">
-
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="34"/>
-
                         <RowDefinition Height="360"/>
                         <RowDefinition Height="80*"/>
                     </Grid.RowDefinitions>
-                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Grid.Column="2"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32"><Run Text="Drawing"/><Run Text=" "/><Run Text="Settings"/><Run Text=" "/></TextBlock>
-                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450" MinHeight="200" Grid.Row="1" Grid.ColumnSpan="3">
+                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100"
+                        Grid.RowSpan="2" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                     TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32">
+            <Run Text="Drawing"/>
+            <Run Text=" "/>
+            <Run Text="Settings"/>
+            <Run Text=" "/>
+                    </TextBlock>
+                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450"
+                MinHeight="200" Row="1" ColumnSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
@@ -367,13 +696,9 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="30
-                                           "/>
+                            <RowDefinition Height="30                                            "/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-
-
-
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="154*"/>
@@ -381,31 +706,74 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="155*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center"><Run Text="Opp"/><Run Text="o"/><Run Text="rtunity ID"/></TextBlock>
-                        <TextBox x:Name="opID" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="1"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" Text="Address" FontSize="14" TextAlignment="Center" Grid.Row="2"/>
-                        <TextBox x:Name="address" HorizontalAlignment="Center" Height="20" Margin="66,2.333,82.444,7.889" TextWrapping="Wrap" Text="Address" VerticalAlignment="Center" Width="320" RenderTransformOrigin="0.5,-0.238" TextAlignment="Left" FontSize="14" TextChanged="LineThickness_TextChanged" Grid.Row="3" Grid.ColumnSpan="4"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="4"><Run Text="Drawn"/><Run Text=" By Name"/></TextBlock>
-                        <TextBox x:Name="dName" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="A.Bolte" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="5"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Text="Client"/>
-                        <TextBox x:Name="client" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="Client" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" Grid.Row="1" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.515,3.875" TextAlignment="Center" Grid.Row="4" Grid.Column="3" FontSize="14"><Run Text="Drawn "/><Run Text="By Initials"/></TextBlock>
-                        <TextBox x:Name="dInitials" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="AB" VerticalAlignment="Center" Width="100"  RenderTransformOrigin="0.545,-1.261" TextAlignment="Center" FontSize="14" Grid.Row="5" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" Text="Checked By Name" FontSize="14" TextAlignment="Center" Grid.Row="6" Grid.Column="3"/>
-                        <TextBox x:Name="cInitials" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="NM" VerticalAlignment="Center" Width="100"  TextAlignment="Center" FontSize="14" Grid.Row="7" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6" Text="Checked By Name"/>
-                        <TextBox x:Name="cName" HorizontalAlignment="Center" Height="20" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="7" Text="N.Moore"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="33,8,33,1" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Grid.Row="8" Text="Approved By Initials"/>
-                        <TextBox x:Name="aInitials" HorizontalAlignment="Center" Height="20" Margin="66,5,66,6" TextWrapping="Wrap" Text="NM" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" Grid.Row="9" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="32,10,33,30" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="8" Text="Approved By Name" Grid.RowSpan="2"/>
-                        <TextBox x:Name="aName" HorizontalAlignment="Center" Height="20" Margin="66,6,65,5" TextWrapping="Wrap" Text="N.Moore" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" Grid.Row="9"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center">
+              <Run Text="Opp"/>
+              <Run Text="o"/>
+              <Run Text="rtunity ID"/>
+                        </TextBlock>
+                        <TextBox x:Name="opID" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text=""
+                     VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center"
+                     Grid.Row="1"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" Text="Address" FontSize="14" TextAlignment="Center"
+                       Grid.Row="2"/>
+                        <TextBox TextChanged="LineThickness_TextChanged" x:Name="address" HorizontalAlignment="Center" Height="20"
+                     Margin="66,2.333,82.444,7.889" TextWrapping="Wrap" Text="Address" VerticalAlignment="Center"
+                     Width="320" RenderTransformOrigin="0.5,-0.238" TextAlignment="Left" FontSize="14" Grid.Row="3"
+                     Grid.ColumnSpan="4"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="4">
+              <Run Text="Drawn"/>
+              <Run Text=" By Name"/>
+                        </TextBlock>
+                        <TextBox x:Name="dName" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap"
+                     Text="A.Bolte" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14"
+                     Grid.Row="5"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Text="Client"/>
+                        <TextBox x:Name="client" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap"
+                     Text="Client" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14"
+                     Grid.Row="1" Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.515,3.875" TextAlignment="Center" Grid.Row="4" Grid.Column="3"
+                       FontSize="14">
+              <Run Text="Drawn "/>
+              <Run Text="By Initials"/>
+                        </TextBlock>
+                        <TextBox x:Name="dInitials" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap"
+                     Text="AB" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.545,-1.261"
+                     TextAlignment="Center" FontSize="14" Grid.Row="5" Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" Text="Checked By Name" FontSize="14"
+                       TextAlignment="Center" Grid.Row="6" Grid.Column="3"/>
+                        <TextBox x:Name="cInitials" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap"
+                     Text="NM" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="7"
+                     Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6"
+                       Text="Checked By Name"/>
+                        <TextBox x:Name="cName" HorizontalAlignment="Center" Height="20" Margin="0" TextWrapping="Wrap"
+                     VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="7"
+                     Text="N.Moore"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="33,8,33,1" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Grid.Row="8"
+                       Text="Approved By Initials"/>
+                        <TextBox x:Name="aInitials" HorizontalAlignment="Center" Height="20" Margin="66,5,66,6" TextWrapping="Wrap"
+                     Text="NM" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="9"
+                     Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="32,10,33,30" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="8" Text="Approved By Name"
+                       Grid.RowSpan="2"/>
+                        <TextBox x:Name="aName" HorizontalAlignment="Center" Height="20" Margin="66,6,65,5" TextWrapping="Wrap"
+                     Text="N.Moore" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14"
+                     Grid.Row="9"/>
                     </Grid>
-                    <Grid Height="50" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                    <Grid Height="50" Margin="0,10,0,0" Row="2" VerticalAlignment="Top" ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
-
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
@@ -413,21 +781,25 @@
                         </Grid.RowDefinitions>
                     </Grid>
                 </Grid>
-
             </TabItem>
             <TabItem x:Name="pvsyst" Header="PVSYST">
                 <Grid Background="#FFE5E5E5" MinWidth="450" MinHeight="400.2">
-
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="34"/>
-
                         <RowDefinition Height="360"/>
                         <RowDefinition Height="80*"/>
                     </Grid.RowDefinitions>
-                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Grid.Column="2"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32"><Run Text="Drawing"/><Run Text=" "/><Run Text="Settings"/><Run Text=" "/></TextBlock>
-                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450" MinHeight="200" Grid.Row="1" Grid.ColumnSpan="3">
+                    <ToolBarPanel HorizontalAlignment="Left" Height="100" Margin="0,14,0,0" VerticalAlignment="Top" Width="100"
+                        Grid.RowSpan="2" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,0,9,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                     TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.759,1.795" Height="32">
+            <Run Text="Drawing"/>
+            <Run Text=" "/>
+            <Run Text="Settings"/>
+            <Run Text=" "/>
+                    </TextBlock>
+                    <Grid Background="#FFE5E5E5" Margin="30,0" RenderTransformOrigin="0.8,0.433" MinWidth="450"
+                MinHeight="200" Row="1" ColumnSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
@@ -440,13 +812,9 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="30
-                                           "/>
+                            <RowDefinition Height="30                                            "/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-
-
-
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="154*"/>
@@ -454,34 +822,66 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="155*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Text="Point 1"/>
-                        <TextBox x:Name="p1" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="5" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center" Grid.Row="1"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="4" Text="Point 3"/>
-                        <TextBox x:Name="p3" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="2" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="5"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Text="Point 2"/>
-                        <TextBox x:Name="p2" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="5" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" Grid.Row="1" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.515,3.875" TextAlignment="Center" Grid.Row="4" Grid.Column="3" FontSize="14" Text="Point 4"/>
-                        <TextBox x:Name="p4" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="2" VerticalAlignment="Center" Width="100"  RenderTransformOrigin="0.545,-1.261" TextAlignment="Center" FontSize="14" Grid.Row="5" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6" Grid.Column="3"><Run Text="Point "/><Run Text="6"/></TextBlock>
-                        <TextBox x:Name="p6" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="2" VerticalAlignment="Center" Width="100"  TextAlignment="Center" FontSize="14" Grid.Row="7" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6" Text="Point 5"/>
-                        <TextBox x:Name="p5" HorizontalAlignment="Center" Height="20" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="7" Text="2"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="33,8,33,1" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Grid.Row="8" Text="Angle"/>
-                        <TextBox x:Name="p8" HorizontalAlignment="Center" Height="20" Margin="66,5,66,6" TextWrapping="Wrap" Text="2" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" Grid.Row="9" Grid.Column="3"/>
-                        <TextBlock HorizontalAlignment="Center" Margin="32,10,33,30" TextWrapping="Wrap" VerticalAlignment="Center" Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="8" Grid.RowSpan="2"><Run Text="Point "/><Run Text="7"/></TextBlock>
-                        <TextBox x:Name="p7" HorizontalAlignment="Center" Height="20" Margin="66,6,65,5" TextWrapping="Wrap" Text="2" VerticalAlignment="Center" Width="100"   TextAlignment="Center" FontSize="14" Grid.Row="9"/>
-                        <ComboBox x:Name="shapeType" HorizontalAlignment="Center" Margin="33,9,29,0" VerticalAlignment="Top" SelectionChanged="PanelTypes_SelectionChanged" Grid.Row="10" MinWidth="170">
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Text="Point 1"/>
+                        <TextBox x:Name="p1" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="5"
+                     VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,-0.238" TextAlignment="Center"
+                     Grid.Row="1"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="4"
+                       Text="Point 3"/>
+                        <TextBox x:Name="p3" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="2"
+                     VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="5"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Text="Point 2"/>
+                        <TextBox x:Name="p2" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="5"
+                     VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="1"
+                     Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.515,3.875" TextAlignment="Center" Grid.Row="4" Grid.Column="3"
+                       FontSize="14" Text="Point 4"/>
+                        <TextBox x:Name="p4" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="2"
+                     VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.545,-1.261" TextAlignment="Center"
+                     FontSize="14" Grid.Row="5" Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6"
+                       Grid.Column="3">
+              <Run Text="Point "/>
+              <Run Text="6"/>
+                        </TextBlock>
+                        <TextBox x:Name="p6" HorizontalAlignment="Center" Height="20" Margin="0,0,0,5" TextWrapping="Wrap" Text="2"
+                     VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="7"
+                     Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Height="22"
+                       Width="166" RenderTransformOrigin="0.559,-1" FontSize="14" TextAlignment="Center" Grid.Row="6"
+                       Text="Point 5"/>
+                        <TextBox x:Name="p5" HorizontalAlignment="Center" Height="20" Margin="0" TextWrapping="Wrap"
+                     VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="7" Text="2"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="33,8,33,1" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Height="22" Width="166" TextAlignment="Center" Grid.Column="3" FontSize="14" Grid.Row="8"
+                       Text="Angle"/>
+                        <TextBox x:Name="p8" HorizontalAlignment="Center" Height="20" Margin="66,5,66,6" TextWrapping="Wrap"
+                     Text="2" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="9"
+                     Grid.Column="3"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="32,10,33,30" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Height="22" Width="166" TextAlignment="Center" FontSize="14" Grid.Row="8" Grid.RowSpan="2">
+              <Run Text="Point "/>
+              <Run Text="7"/>
+                        </TextBlock>
+                        <TextBox x:Name="p7" HorizontalAlignment="Center" Height="20" Margin="66,6,65,5" TextWrapping="Wrap"
+                     Text="2" VerticalAlignment="Center" Width="100" TextAlignment="Center" FontSize="14" Grid.Row="9"/>
+                        <ComboBox SelectionChanged="PanelTypes_SelectionChanged" x:Name="shapeType" HorizontalAlignment="Center"
+                      Margin="33,9,29,0" VerticalAlignment="Top" Grid.Row="10" MinWidth="170">
                             <ComboBoxItem Content="Plane"/>
                             <ComboBoxItem Content="One sided roof"/>
                             <ComboBoxItem Content="two sided roof"/>
                         </ComboBox>
                     </Grid>
-                    <Grid Height="50" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                    <Grid Height="50" Margin="0,10,0,0" Row="2" VerticalAlignment="Top" ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="100*"/>
-
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
@@ -489,12 +889,12 @@
                         </Grid.RowDefinitions>
                     </Grid>
                 </Grid>
-
             </TabItem>
-
         </TabControl>
-        <TextBox x:Name="arrayCover" HorizontalAlignment="Left" Height="224" Margin="27,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" RenderTransformOrigin="0.84,-12.817" TextChanged="PercentBox_TextChanged" FontSize="24" TextAlignment="Center" Visibility="Hidden" Grid.RowSpan="2" />
-        <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="95,15,20,0" VerticalAlignment="Top">
+        <TextBox x:Name="arrayCover" HorizontalAlignment="Left" Height="224" Margin="27,267,0,0" TextWrapping="Wrap"
+             VerticalAlignment="Top" Width="157" RenderTransformOrigin="0.84,-12.817" FontSize="24"
+             TextAlignment="Center" Visibility="Hidden" Grid.RowSpan="2"/>
+        <Grid Column="1" HorizontalAlignment="Right" Margin="95,15,20,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="43"/>
@@ -505,17 +905,37 @@
                 <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="sLabel" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="2,0" VerticalAlignment="Center" TextAlignment="Right" RenderTransformOrigin="-0.297,0.85" Grid.Column="3" Height="16" Width="66"><Run Text="Zoom Level:"/><Run Text=" "/></TextBlock>
-            <TextBlock x:Name="dLabel" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="4,0,0,0" VerticalAlignment="Center" Grid.Column="5" Height="16" Width="53"><Run Text="Distance"/><Run Text=":"/></TextBlock>
-            <TextBlock x:Name="aLabel" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="4,0" VerticalAlignment="Center" RenderTransformOrigin="-6.25,-0.55" Height="16" Width="37"><Run Text=" "/><Run Text="Angle:"/></TextBlock>
-            <TextBlock x:Name="sBox" Text="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" RenderTransformOrigin="4.232,3.125" Margin="0" Height="16" Width="6"/>
-            <TextBlock x:Name="snapBox" HorizontalAlignment="Center" Text="0" VerticalAlignment="Bottom" RenderTransformOrigin="-0.605,5.083" TextAlignment="Right" Margin="1,0,0,0" Grid.Column="1" Width="42" Height="16"/>
-            <TextBlock x:Name="aLabel_Copy" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="-6.25,-0.55" Grid.Column="2" Text="Degrees" Height="16" Width="44"/>
-            <TextBlock x:Name="dBox" HorizontalAlignment="Center" Text="0" VerticalAlignment="Center" RenderTransformOrigin="-0.605,5.083" TextAlignment="Right" Grid.Column="6" Height="16" Width="45" Margin="0,0,3,0"/>
-            <TextBlock x:Name="snapBox_Copy2" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="Meters" VerticalAlignment="Top" RenderTransformOrigin="-0.605,5.083" Grid.Column="7" Height="16" Width="37"/>
-
+            <TextBlock x:Name="sLabel" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="2,0"
+                 VerticalAlignment="Center" TextAlignment="Right" RenderTransformOrigin="-0.297,0.85"
+                 Grid.Column="3" Height="16" Width="66">
+        <Run Text="Zoom Level:"/>
+        <Run Text=" "/>
+            </TextBlock>
+            <TextBlock x:Name="dLabel" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="4,0,0,0"
+                 VerticalAlignment="Center" Grid.Column="5" Height="16" Width="53">
+        <Run Text="Distance"/>
+        <Run Text=":"/>
+            </TextBlock>
+            <TextBlock x:Name="aLabel" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="4,0"
+                 VerticalAlignment="Center" RenderTransformOrigin="-6.25,-0.55" Height="16" Width="37">
+        <Run Text=" "/>
+        <Run Text="Angle:"/>
+            </TextBlock>
+            <TextBlock x:Name="sBox" Text="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"
+                 Grid.Column="4" RenderTransformOrigin="4.232,3.125" Margin="0" Height="16" Width="6"/>
+            <TextBlock x:Name="snapBox" HorizontalAlignment="Center" Text="0" VerticalAlignment="Bottom"
+                 RenderTransformOrigin="-0.605,5.083" TextAlignment="Right" Margin="1,0,0,0" Grid.Column="1"
+                 Width="42" Height="16"/>
+            <TextBlock x:Name="aLabel_Copy" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="5,0,0,0"
+                 VerticalAlignment="Center" RenderTransformOrigin="-6.25,-0.55" Grid.Column="2" Text="Degrees"
+                 Height="16" Width="44"/>
+            <TextBlock x:Name="dBox" HorizontalAlignment="Center" Text="0" VerticalAlignment="Center"
+                 RenderTransformOrigin="-0.605,5.083" TextAlignment="Right" Grid.Column="6" Height="16" Width="45"
+                 Margin="0,0,3,0"/>
+            <TextBlock x:Name="snapBox_Copy2" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="Meters"
+                 VerticalAlignment="Top" RenderTransformOrigin="-0.605,5.083" Grid.Column="7" Height="16" Width="37"/>
         </Grid>
-        <Grid Margin="0" Width="230" HorizontalAlignment="Left" Grid.RowSpan="2">
+        <Grid Margin="0" Width="230" HorizontalAlignment="Left" RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="240"/>
                 <RowDefinition Height="30"/>
@@ -524,48 +944,69 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30
-                               "/>
-
+                <RowDefinition Height="30                                "/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="arrayLabel" TextWrapping="Wrap" Text="Array Selection" HorizontalAlignment="Left" Margin="23,0,0,0" Height="29" Width="197" VerticalAlignment="Top" TextAlignment="Center" FontSize="20" Grid.Row="1"/>
-            <TextBlock x:Name="panelLabel" TextWrapping="Wrap" Text="Panel Set" HorizontalAlignment="Left" Margin="10,1,0,0" Height="29" Width="197" VerticalAlignment="Top" TextAlignment="Center" FontSize="20" Grid.Row="4"/>
-            <ListBox x:Name="arrayList" BorderThickness="0" 
-                             ItemsSource="{Binding}" MaxHeight="200" MaxWidth="150" MinHeight="80" MinWidth="150" Margin="0" SelectionChanged="arrayList_SelectionChanged" SelectionMode="Extended" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2">
-                <ListBox.ItemTemplate>
+            <TextBlock x:Name="arrayLabel" TextWrapping="Wrap" Text="Array Selection" HorizontalAlignment="Left"
+                 Margin="23,0,0,0" Height="29" Width="197" VerticalAlignment="Top" TextAlignment="Center"
+                 FontSize="20" Grid.Row="1"/>
+            <TextBlock x:Name="panelLabel" TextWrapping="Wrap" Text="Panel Set" HorizontalAlignment="Left"
+                 Margin="10,1,0,0" Height="29" Width="197" VerticalAlignment="Top" TextAlignment="Center"
+                 FontSize="20" Grid.Row="4"/>
+            <ListBox SelectionChanged="arrayList_SelectionChanged" x:Name="arrayList" BorderThickness="0"
+               MaxHeight="200" MaxWidth="150" MinHeight="80" MinWidth="150" Margin="0" SelectionMode="Extended"
+               HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2" ItemsSource="{Binding}">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
+                </ItemsControl.ItemTemplate>
             </ListBox>
-            <ListBox x:Name="panelList" BorderThickness="0" 
-                             ItemsSource="{Binding}" MaxHeight="200" MaxWidth="150" MinHeight="80" MinWidth="150" Margin="0" SelectionChanged="PanelListChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="5">
-                <ListBox.ItemTemplate>
+            <ListBox SelectionChanged="PanelListChanged" x:Name="panelList" BorderThickness="0" MaxHeight="200"
+               MaxWidth="150" MinHeight="80" MinWidth="150" Margin="0" HorizontalAlignment="Center"
+               VerticalAlignment="Top" Grid.Row="5" ItemsSource="{Binding}">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
+                </ItemsControl.ItemTemplate>
             </ListBox>
-            <Button x:Name="go" Content="INSERT PANELS" HorizontalAlignment="Left" Margin="13,122,0,0" VerticalAlignment="Top" Width="200" Height="35" Click="Go_Click" RenderTransformOrigin="0.51,2.4" FontSize="20"/>
-            <Button x:Name="dfxGo" HorizontalAlignment="Left" Margin="13,57,0,0" VerticalAlignment="Top" Width="60" Click="DfxGo_Click" RenderTransformOrigin="-0.851,37918294165.667" Height="40">
+            <Button Click="Go_Click" x:Name="go" Content="INSERT PANELS" HorizontalAlignment="Left" Margin="13,122,0,0"
+              VerticalAlignment="Top" Width="200" Height="35" RenderTransformOrigin="0.51,2.4" FontSize="20"/>
+            <Button Click="DfxGo_Click" x:Name="dfxGo" HorizontalAlignment="Left" Margin="13,57,0,0"
+              VerticalAlignment="Top" Width="60" RenderTransformOrigin="-0.851,37918294165.667" Height="40">
                 <TextBlock TextWrapping="Wrap" Text="EXPORT DXF" TextAlignment="Center"/>
             </Button>
-            <Button x:Name="deleteArray_Copy" Content="Delete Array" HorizontalAlignment="Center" Margin="54,3,54,0" VerticalAlignment="Top" Width="122" Height="24" Click="DeleteArray_Click" RenderTransformOrigin="0.967,5.562" Grid.Row="3"/>
-            <TextBlock x:Name="panelLabel_Copy" TextWrapping="Wrap" Text="Selected Array Power" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Grid.Row="6"/>
-            <TextBlock x:Name="WattBox" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="0 Panels    0 kWp" VerticalAlignment="Center" RenderTransformOrigin="-0.485,-4.906" Grid.Row="7" FontSize="16"/>
-            <CheckBox x:Name="shadingTick" Content="Draw Exclusion" HorizontalAlignment="Left" Margin="13,169,0,0" VerticalAlignment="Top" Height="20" Width="101" Checked="ShadingTick_Checked"/>
-            <CheckBox x:Name="sqaure" Content="Draw Squares" HorizontalAlignment="Left" Margin="130,169,0,0" VerticalAlignment="Top" Height="20" Width="100" RenderTransformOrigin="0.505,-0.5" Checked="Sqaure_Checked"/>
-            <CheckBox x:Name="snapLock" Content="Snap Lock" HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" Height="20" Width="78" RenderTransformOrigin="0.505,-0.5"/>
-            <Button x:Name="button1" Visibility="Hidden" Content="Button" HorizontalAlignment="Left" Margin="39,16,0,0" Grid.Row="3" Width="75" Click="Button1_Click" Height="12" VerticalAlignment="Top"/>
-            <Button x:Name="button2" Content="Button" HorizontalAlignment="Left" Margin="145,5,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.107,-1.1" Click="button2_Click"/>
-            <CheckBox x:Name="shadingTick_Copy" Content="Draw Exclusion" HorizontalAlignment="Left" Margin="13,102,0,0" VerticalAlignment="Top" Height="20" Width="101" Checked="shadingTick_Copy_Checked"/>
-            <Button x:Name="button3" Content="Button" HorizontalAlignment="Left" Margin="83,226,0,0" VerticalAlignment="Top" Width="75" Click="button3_Click"/>
+            <Button Click="DeleteArray_Click" x:Name="deleteArray_Copy" Content="Delete Array"
+              HorizontalAlignment="Center" Margin="54,3,54,0" VerticalAlignment="Top" Width="122" Height="24"
+              RenderTransformOrigin="0.967,5.562" Grid.Row="3"/>
+            <TextBlock x:Name="panelLabel_Copy" TextWrapping="Wrap" Text="Selected Array Power"
+                 HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" TextAlignment="Center"
+                 FontSize="16" Grid.Row="6"/>
+            <TextBlock x:Name="WattBox" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap"
+                 Text="0 Panels    0 kWp" VerticalAlignment="Center" RenderTransformOrigin="-0.485,-4.906"
+                 Grid.Row="7" FontSize="16"/>
+            <CheckBox Checked="ShadingTick_Checked" x:Name="shadingTick" Content="Draw Exclusion"
+                HorizontalAlignment="Left" Margin="13,169,0,0" VerticalAlignment="Top" Height="20" Width="101"/>
+            <CheckBox Checked="Sqaure_Checked" x:Name="sqaure" Content="Draw Squares" HorizontalAlignment="Left"
+                Margin="130,169,0,0" VerticalAlignment="Top" Height="20" Width="100"
+                RenderTransformOrigin="0.505,-0.5"/>
+            <CheckBox x:Name="snapLock" Content="Snap Lock" HorizontalAlignment="Left" Margin="130,201,0,0"
+                VerticalAlignment="Top" Height="20" Width="78" RenderTransformOrigin="0.505,-0.5"/>
+            <Button Click="Button1_Click" x:Name="button1" Visibility="Hidden" Content="Button"
+              HorizontalAlignment="Left" Margin="39,16,0,0" Grid.Row="3" Width="75" Height="12"
+              VerticalAlignment="Top"/>
+            <Button Click="button2_Click" x:Name="button2" Content="Button" HorizontalAlignment="Left"
+              Margin="145,5,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75"
+              RenderTransformOrigin="0.107,-1.1"/>
+            <CheckBox Checked="shadingTick_Copy_Checked" x:Name="shadingTick_Copy" Content="Draw PVsyst"
+                HorizontalAlignment="Left" Margin="13,102,0,0" VerticalAlignment="Top" Height="20" Width="101"/>
+            <Button Click="button3_Click" x:Name="button3" Content="Button" HorizontalAlignment="Left"
+              Margin="83,226,0,0" VerticalAlignment="Top" Width="75"/>
+            <CheckBox Checked="shadingTick_Copy_Checked" x:Name="InvertPanels" Content="Pick panels"
+                HorizontalAlignment="Left" Margin="114,102,0,0" VerticalAlignment="Top" Height="20" Width="101"/>
         </Grid>
-        <CheckBox x:Name="animation" Content="Pause Animation" HorizontalAlignment="Left" Margin="13,201,0,0" VerticalAlignment="Top" Height="20" Width="112" RenderTransformOrigin="0.505,-0.5" Checked="Animation_Checked" Unchecked="Animation_Unchecked"/>
-
+        <CheckBox Checked="Animation_Checked" Unchecked="Animation_Unchecked" x:Name="animation"
+              Content="Pause Animation" HorizontalAlignment="Left" Margin="13,201,0,0" VerticalAlignment="Top"
+              Height="20" Width="112" RenderTransformOrigin="0.505,-0.5"/>
     </Grid>
-
-
-
-
 </Window>
